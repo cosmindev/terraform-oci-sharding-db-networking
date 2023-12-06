@@ -182,7 +182,7 @@ For complete documentation and a larger set of examples on configuring an OCI ne
 
 | STEP |  ACTION |
 |---|---| 
-| **1** | [![Deploy_To_OCI](../../../images/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/oracle-quickstart/terraform-oci-open-lz/archive/refs/heads/master.zip&zipUrlVariables={"input_config_files_urls":"https://raw.githubusercontent.com/oracle-quickstart/terraform-oci-open-lz/master/examples/oci-open-lz/op01_manage_shared_services/open_lz_shared_identity.auto.tfvars.json,https://raw.githubusercontent.com/oracle-quickstart/terraform-oci-open-lz/master/examples/oci-open-lz/op01_manage_shared_services/open_lz_shared_network.auto.tfvars.json"}) |
+| **1** | [![Deploy_To_OCI](./diagrams/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/oracle-quickstart/terraform-oci-open-lz/archive/refs/heads/master.zip&zipUrlVariables={"input_config_files_urls":"https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/sharding_identity.auto.tfvars.json,https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/sharding_network_region_1.auto.tfvars.json"}) |
 | **2** | Accept terms,  wait for the configuration to load. |
 | **3** | Set the working directory to “orm-facade”. | 
 | **4** | Set the stack name you prefer. | 
