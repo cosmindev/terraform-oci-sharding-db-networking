@@ -38,7 +38,7 @@
 
 ## **2. Setup IAM Configuration**
 
-For configuring and running the Sharding IAM layer use the following JSON file: [open_lz_shared_identity.auto.tfvars.json](sharding_identity.auto.tfvars.json). You can customize this  configuration to fit your exact OCI IAM topology.
+For configuring and running the Sharding IAM layer use the following JSON file: [sharding_identity_master.auto.tfvars.json](sharding_identity_master.auto.tfvars.json). You can customize this  configuration to fit your exact OCI IAM topology.
 
 This configuration file will cover the following four categories of resources described in the next sections.
 
@@ -62,8 +62,8 @@ The corresponding JSON configuration for the compartments topology is:
         "enable_delete": "true",
         "default_parent_ocid": "ocid1.....",
         "compartments": {
-            "CMP-NETWORK-KEY": {
-                "name": "cmp-network",
+            "CMP-SHARDING-NETWORK-KEY": {
+                "name": "cmp-sharding-network",
                 "description": "OCI Sharding Network Compartment",
                 "defined_tags": null,
                 "freeform_tags": {
@@ -91,8 +91,8 @@ The corresponding JSON configuration for the groups topology is:
         "default_defined_tags": null,
         "default_freeform_tags": null,
         "groups": {
-            "GRP-NETWORK-ADMINS": { 
-                "name": "grp-network-admins",  
+            "GRP-NETWORK-ADMINS": {
+                "name": "grp-network-sharding-admins",
                 "description": "Sharding Network Admins"
             }
         }
@@ -130,28 +130,15 @@ For this example, replace the compartment_ocid to your tenancy OCID.
 
 ```
 ...
-   "policies_configuration": {
+    "policies_configuration": {
         "enable_cis_benchmark_checks": "false",
         "supplied_policies": {
-            "PCY-NETWORK-ADMINISTRATION": {
-                "name": "pcy-network-administration",
-                "description": "Sharding netwoking IAM policies",
-                "compartment_ocid": "ocid1....",
+            "SHARDING-NETWORK-ADMINISTRATION": {
+                "name": "sharding-network-administration",
+                "description": "Sharding Network Policies",
+                "compartment_ocid": "ocid1.compartment.oc1..aaaaaaaalu3dpja5enhyfe6ls4s3n2kw2ooatry2lv32y6ea7ds2ducspkda",
                 "statements": [
-                    "allow group grp-network-admins to use cloud-shell in tenancy",
-                    "allow group grp-network-admins to read usage-budgets in tenancy",
-                    "allow group grp-network-admins to read usage-reports in tenancy",
-                    "allow group grp-network-admins to read objectstorage-namespaces in tenancy",
-                    "allow group grp-network-admins to read all-resources in compartment cmp-network",
-                    "allow group grp-network-admins to manage virtual-network-family in compartment cmp-network",
-                    "allow group grp-network-admins to manage dns in compartment paalonso-openlz-tfcli:cmp-network",
-                    "allow group grp-network-admins to manage load-balancers in compartment cmp-network",
-                    "allow group grp-network-admins to manage alarms in compartment cmp-network",
-                    "allow group grp-network-admins to manage metrics in compartment cmp-network",
-                    "allow group grp-network-admins to manage ons-family in compartment cmp-network",
-                    "allow group grp-network-admins to manage orm-stacks in compartment cmp-network",
-                    "allow group grp-network-admins to manage orm-jobs in compartment cmp-network",
-                    "allow group grp-network-admins to manage orm-config-source-providers in compartment cmp-network"
+                    "allow group grp-network-admins to manage virtual-network-family in compartment cmp-sharding-network"
                 ]
             }
         }
@@ -168,7 +155,7 @@ For an example of such configuration and for extended documentation please refer
 
 ## **3. Setup Network Configuration**
 
-For configuring the OCI Sharding required Network configuration open and edit the following JSON configuration file: [sharding_network_region_1.auto.tfvars.json](sharding_network_region_1.auto.tfvars.json). 
+For configuring the OCI Sharding required Network configuration open and edit the following JSON configuration file: [sharding_network_region_ashburn.auto.tfvars.json](sharding_network_region_ashburn.auto.tfvars.json). 
 
 
 You can customize this JSON configuration to fit your exact OCI Networking topology. This Terraform automation is extremely versatible and can support any type of network topology. 
@@ -182,13 +169,14 @@ For complete documentation and a larger set of examples on configuring an OCI ne
 
 | STEP |  ACTION |
 |---|---| 
-| **1** | [![Deploy_To_OCI](./diagrams/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/oracle-quickstart/terraform-oci-open-lz/archive/refs/heads/master.zip&zipUrlVariables={"input_config_files_urls":"https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/sharding_identity.auto.tfvars.json,https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/sharding_network_region_1.auto.tfvars.json"}) |
-| **2** | Accept terms,  wait for the configuration to load. |
-| **3** | Set the working directory to “orm-facade”. | 
-| **4** | Set the stack name you prefer. | 
-| **5** |  Set the terraform version to 1.2.x. Click Next. | 
-| **6** | Accept the defaul configurations. Click Next. Optionally,replace with your json/yaml config files. |
-| **7** | Un-check run apply. Click Create. 
+| **1** | Deploy to Ashburn Region [![Deploy_To_OCI](./diagrams/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/oracle-quickstart/terraform-oci-open-lz/archive/refs/heads/master.zip&zipUrlVariables={"input_config_files_urls":"https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/yaml-configurations/sharding_identity_master.yml,https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/yaml-configurations/sharding_network_region_ashburn.yml"}) |
+| **2** | Deploy to Frankfurt Region [![Deploy_To_OCI](./diagrams/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/oracle-quickstart/terraform-oci-open-lz/archive/refs/heads/master.zip&zipUrlVariables={"input_config_files_urls":"https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/yaml-configurations/sharding_identity_null.yml,https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/yaml-configurations/sharding_network_region_frankfurt.yml"}) |
+| **3** | Accept terms,  wait for the configuration to load. |
+| **4** | Set the working directory to “orm-facade”. | 
+| **5** | Set the stack name you prefer. | 
+| **6** |  Set the terraform version to 1.2.x. Click Next. | 
+| **7** | Accept the defaul configurations. Click Next. Optionally,replace with your json/yaml config files. |
+| **8** | Un-check run apply. Click Create. 
 
 &nbsp; 
 
@@ -228,11 +216,17 @@ Run ```terraform init`````` to download all the required external terraform prov
 Run ```terraform plan`````` with the IAM and Network configuration.
 
 ```
-terraform plan \
--var-file ../examples/oci-open-lz/op01_manage_shared_services/oci-credentials.tfvars.json \
--var-file ../examples/oci-open-lz/op01_manage_shared_services/open_lz_shared_identity.auto.tfvars.json \
--var-file ../examples/oci-open-lz/op01_manage_shared_services/open_lz_shared_network.auto.tfvars.json \
--state ../examples/oci-open-lz/op01_manage_shared_services/terraform.tfstate
+terraform129 plan \                                                               
+-var-file ../../terraform-oci-sharding-db-networking/oci-credentials-ashburn.tfvars.json \
+-var-file ../../terraform-oci-sharding-db-networking/sharding_identity_master.auto.tfvars.json \
+-var-file ../../terraform-oci-sharding-db-networking/sharding_network_region_ashburn.auto.tfvars.json \
+-state ../../terraform-oci-sharding-db-networking/terraform-ashburn.tfstate
+
+terraform129 plan \                                                               
+-var-file ../../terraform-oci-sharding-db-networking/oci-credentials-frankfurt.tfvars.json \
+-var-file ../../terraform-oci-sharding-db-networking/sharding_identity_null.auto.tfvars.json \  
+-var-file ../../terraform-oci-sharding-db-networking/sharding_network_region_frankfurt.auto.tfvars.json \
+-state ../../terraform-oci-sharding-db-networking/terraform-frankfurt.tfstate
 ```
 
 After the execution please analyze the output of the command above and check if it corresponds to your desired configuration.
@@ -248,11 +242,17 @@ The ideal scenario regarding the **state file** will be for each configuration t
 Run ```terraform apply``` with the IAM and Network configuration. After its execution the configured resources will be provisioned or updated on OCI.
 
 ```
-terraform apply \
--var-file ../examples/oci-open-lz/op01_manage_shared_services/oci-credentials.tfvars.json \
--var-file ../examples/oci-open-lz/op01_manage_shared_services/open_lz_shared_identity.auto.tfvars.json \
--var-file ../examples/oci-open-lz/op01_manage_shared_services/open_lz_shared_network.auto.tfvars.json \
--state ../examples/oci-open-lz/op01_manage_shared_services/terraform.tfstate
+terraform129 apply \                                                               
+-var-file ../../terraform-oci-sharding-db-networking/oci-credentials-ashburn.tfvars.json \
+-var-file ../../terraform-oci-sharding-db-networking/sharding_identity_master.auto.tfvars.json \
+-var-file ../../terraform-oci-sharding-db-networking/sharding_network_region_ashburn.auto.tfvars.json \
+-state ../../terraform-oci-sharding-db-networking/terraform-ashburn.tfstate
+
+terraform129 apply \                                                               
+-var-file ../../terraform-oci-sharding-db-networking/oci-credentials-frankfurt.tfvars.json \
+-var-file ../../terraform-oci-sharding-db-networking/sharding_identity_null.auto.tfvars.json \  
+-var-file ../../terraform-oci-sharding-db-networking/sharding_network_region_frankfurt.auto.tfvars.json \
+-state ../../terraform-oci-sharding-db-networking/terraform-frankfurt.tfstate
 ```
 
 Depending on your JSON configuration configurations the output of the ```terraform apply``` should be identical or similar to this [example](./tf_apply_output_example.out).
