@@ -24,12 +24,17 @@ network_configuration:
             drg_attachments:
               DRG-A-SHARDING-VCN-A-ATTACH-KEY:
                 display_name: drg-a-sharding-vcn-a-attach
+                drg_route_table_key: DRG-RT-VCN-A-TO-VCN-B-KEY
                 network_details:
                   attached_resource_key: VCN-A-KEY
                   type: VCN
             remote_peering_connections:
               RPC-VCN-A-VCN-B-KEY:
                 display_name: rpc-vcn-a-vcn-b
+            drg_route_tables:
+              DRG-RT-VCN-A-TO-VCN-B-KEY:
+                display_name: drg-rt-vcna-to-vcnb
+                is_ecmp_enabled: false
       vcns:
         VCN-A-KEY:
           block_nat_traffic: false
@@ -63,6 +68,21 @@ network_configuration:
           is_create_igw: false
           is_ipv6enabled: false
           is_oracle_gua_allocation_enabled: false
+          route_tables:
+            VCN-A-RT-KEY:
+              display_name: vcn-a-rt
+              route_rules:
+                TO-IGW-KEY:
+                  description: Default route table to IGW
+                  destination: 0.0.0.0/0
+                  destination_type: CIDR_BLOCK
+                  network_entity_key: IGW-ASH-KEY
+                TO-VCN-B-KEY:
+                  description: Route for accessing VCN-B in Frankfurt through the
+                    DRG RPC
+                  destination: 10.0.4.0/22
+                  destination_type: CIDR_BLOCK
+                  network_entity_key: DRG-A-SHARDING-KEY
           subnets:
             SUBNET-A-KEY:
               cidr_block: 10.0.0.0/24
@@ -72,6 +92,11 @@ network_configuration:
               ipv6cidr_blocks: []
               prohibit_internet_ingress: true
               prohibit_public_ip_on_vnic: true
-              route_table_key: default_route_table
+              route_table_key: VCN-A-RT-KEY
               security_list_keys:
               - default_security_list
+          vcn_specific_gateways:
+            internet_gateways:
+              IGW-ASH-KEY:
+                display_name: igw-ash
+                enabled: true
