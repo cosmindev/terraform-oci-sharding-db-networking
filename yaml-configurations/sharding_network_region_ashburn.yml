@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Thu Dec 07 2023                                                                          #
+# Last Modified: Fri Dec 08 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -27,6 +27,9 @@ network_configuration:
                 network_details:
                   attached_resource_key: VCN-A-KEY
                   type: VCN
+            remote_peering_connections:
+              RPC-VCN-A-VCN-B-KEY:
+                display_name: rpc-vcn-a-vcn-b
       vcns:
         VCN-A-KEY:
           block_nat_traffic: false

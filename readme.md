@@ -175,7 +175,7 @@ For complete documentation and a larger set of examples on configuring an OCI ne
 | **4** | Set the working directory to “orm-facade”. | 
 | **5** | Set the stack name you prefer. | 
 | **6** |  Set the terraform version to 1.2.x. Click Next. | 
-| **7** | Accept the defaul configurations. Click Next. Optionally,replace with your json/yaml config files. |
+| **7** | Accept the default configurations. Click Next. Optionally,replace with your json/yaml config files. |
 | **8** | Un-check run apply. Click Create. 
 
 &nbsp; 

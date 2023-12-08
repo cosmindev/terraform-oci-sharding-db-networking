@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Thu Dec 07 2023                                                                          #
+# Last Modified: Fri Dec 08 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -27,6 +27,12 @@ network_configuration:
                 network_details:
                   attached_resource_key: VCN-B-KEY
                   type: VCN
+            remote_peering_connections:
+              RPC-VCN-B-VCN-A-KEY:
+                display_name: rpc-vcn-b-vcn-a
+                # update with the corresponding peer id
+                #peer_id: ocid1.remotepeeringconnection.oc1.iad.aaaaaaaan45clgio5noerjsrju4il25adkgwjlln2hwyym3krbad2roeaeua
+                peer_region_name: us-ashburn-1
       vcns:
         VCN-B-KEY:
           block_nat_traffic: false
