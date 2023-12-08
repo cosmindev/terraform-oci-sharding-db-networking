@@ -31,7 +31,7 @@ network_configuration:
               RPC-VCN-B-VCN-A-KEY:
                 display_name: rpc-vcn-b-vcn-a
                 # update with the corresponding peer id
-                #peer_id: ocid1.remotepeeringconnection.oc1.iad.aaaaaaaan45clgio5noerjsrju4il25adkgwjlln2hwyym3krbad2roeaeua
+                peer_id: ocid1.remotepeeringconnection.oc1.iad.aaaaaaaa2zm264omr4dtsjjgubfahko7eeoilfwv6peceqzew2rahtt7s6ka
                 peer_region_name: us-ashburn-1
       vcns:
         VCN-B-KEY:
