@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Fri Dec 08 2023                                                                          #
+# Last Modified: Mon Dec 11 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -31,13 +31,17 @@ network_configuration:
             remote_peering_connections:
               RPC-VCN-B-VCN-A-KEY:
                 display_name: rpc-vcn-b-vcn-a
-                # Update peer_id 
-                peer_id: ocid1.remotepeeringconnection.oc1.iad.aaaaaaaaouggndjhe5xidl4d2t2sbwo2b5zgcm5dlmz66ret6muiskhjboja
+                peer_id: ocid1.remotepeeringconnection.oc1.iad.aaaaaaaa474gksks7o65rlccgb64hzubgzflzi6nen4xa2su35pis4yzp4ua
                 peer_region_name: us-ashburn-1
             drg_route_tables:
               DRG-RT-VCN-B-TO-VCN-A-KEY:
                 display_name: drg-rt-vcnb-to-vcna
                 is_ecmp_enabled: false
+                route_rules:
+                  ALL-TRAFFIC-TO-VCN-A-TO-RPC-KEY:
+                    destination: 10.0.0.0/22
+                    destination_type: CIDR_BLOCK
+                    next_hop_drg_attachment_key: RPC-VCN-B-VCN-A-KEY
       vcns:
         VCN-B-KEY:
           block_nat_traffic: false

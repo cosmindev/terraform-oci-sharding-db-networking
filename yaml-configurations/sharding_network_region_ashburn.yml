@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Fri Dec 08 2023                                                                          #
+# Last Modified: Mon Dec 11 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -35,6 +35,11 @@ network_configuration:
               DRG-RT-VCN-A-TO-VCN-B-KEY:
                 display_name: drg-rt-vcna-to-vcnb
                 is_ecmp_enabled: false
+                route_rules:
+                  ALL-TRAFFIC-TO-VCN-B-TO-RPC-KEY:
+                    destination: 10.0.4.0/22
+                    destination_type: CIDR_BLOCK
+                    next_hop_drg_attachment_key: RPC-VCN-A-VCN-B-KEY
       vcns:
         VCN-A-KEY:
           block_nat_traffic: false
