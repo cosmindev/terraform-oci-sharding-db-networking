@@ -38,7 +38,7 @@ network_configuration:
                   display_name: rpc-vcn-gdad-iad-vcn-gdad-ams
                   peer_region_name: eu-amsterdam-1
                   # To be added after 1st apply operation - peer OCID of the RPC in AMS for the AMS-IAD Connection
-                  peer_id: ocid1.remotepeeringconnection.oc1.eu-amsterdam-1.aaaaaaaal7t6myvlohm2i72fgwvk6mllsuedrfx2lfphecyq5fqdilsctpuq
+                  # peer_id: ocid1.remotepeeringconnection.oc1.eu-amsterdam-1.aaaaaaaal7t6myvlohm2i72fgwvk6mllsuedrfx2lfphecyq5fqdilsctpuq
               drg_route_tables:
                 DRG-RT-VCN-GDAD-IAD-TO-ALL-REG-VCNS-KEY:
                   display_name: drg-rt-vcn-gdad-iad-to-all-reg-vcns
@@ -149,7 +149,7 @@ network_configuration:
                   display_name: rpc-vcn-gdad-fra-vcn-gdad-iad
                   peer_region_name: us-ashburn-1
                   # To be added after 1st apply operation - peer OCID of the RPC in IAD for the IAD-FRA Connection
-                  peer_id: ocid1.remotepeeringconnection.oc1.iad.aaaaaaaadxwpbrw7htyrx3yxg6nzxqqvwhefgid7rpbp3elehcccc73xynsa
+                  # peer_id: ocid1.remotepeeringconnection.oc1.iad.aaaaaaaadxwpbrw7htyrx3yxg6nzxqqvwhefgid7rpbp3elehcccc73xynsa
                 RPC-VCN-GDAD-FRA-VCN-GDAD-AMS-KEY:
                   display_name: rpc-vcn-gdad-fra-vcn-gdad-ams
                   peer_region_name: eu-amsterdam-1
@@ -266,7 +266,7 @@ network_configuration:
                   display_name: rpc-vcn-gdad-ams-vcn-gdad-fra
                   peer_region_name: eu-frankfurt-1
                   # To be added after 1st apply operation - peer OCID of the RPC in FRA for the FRA-AMS Connection
-                  peer_id: ocid1.remotepeeringconnection.oc1.eu-frankfurt-1.aaaaaaaarfcyo56e5d4a5ta4bqmfdetv3sggksaikodw35xzljakzvorc4lq
+                  # peer_id: ocid1.remotepeeringconnection.oc1.eu-frankfurt-1.aaaaaaaarfcyo56e5d4a5ta4bqmfdetv3sggksaikodw35xzljakzvorc4lq
               drg_route_tables:
                 DRG-RT-VCN-GDAD-AMS-TO-ALL-REG-VCNS-KEY:
                   display_name: drg-rt-vcn-gdad-fra-to-all-reg-vcns-vcns
