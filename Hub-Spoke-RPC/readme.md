@@ -36,7 +36,7 @@
 
 &nbsp; 
 
-![Diagram](diagrams/ShardingCustomerNetwork.png)
+![Diagram](../diagrams/ShardingCustomerNetwork.png)
 
 ## **2. Setup IAM Configuration**
 
