@@ -1,0 +1,63 @@
+# ####################################################################################################### #
+# Copyright (c) 2023 Oracle and/or its affiliates,  All rights reserved.                                  #
+# Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
+# Author: Cosmin Tudor                                                                                    #
+# Author email: cosmin.tudor@oracle.com                                                                   #
+# Last Modified: Thu Dec 14 2023                                                                          #
+# Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
+# ####################################################################################################### #
+
+---
+compartments_configuration:
+  enable_delete: 'false'
+  default_parent_ocid: ocid1.compartment.oc1..aaaaaaaalu3dpja5enhyfe6ls4s3n2kw2ooatry2lv32y6ea7ds2ducspkda
+  compartments:
+    CMP-SHARDING-KEY:
+      name: cmp-sharding
+      description: OCI Sharding Compartment
+      defined_tags:
+      freeform_tags:
+        oci-open-lz: oci-sharding
+        oci-open-lz-customer: oci-sharding-customer
+        oci-open-lz-cmp: DB Sharding
+groups_configuration:
+  default_defined_tags:
+  default_freeform_tags:
+  groups:
+    GRP-SHARDING-ADMINS-KEY:
+      name: grp-sharding-admins
+      description: Sharding Admins
+dynamic_groups_configuration:
+policies_configuration:
+  enable_cis_benchmark_checks: 'false'
+  supplied_policies:
+    SHARDING-NETWORK-ADMINISTRATION:
+      name: sharding-network-administration
+      description: Sharding Network Policies
+      compartment_ocid: ocid1.compartment.oc1..aaaaaaaalu3dpja5enhyfe6ls4s3n2kw2ooatry2lv32y6ea7ds2ducspkda
+      statements:
+      - allow group grp-sharding-admins to manage virtual-network-family in compartment
+        cmp-sharding
+      - allow group grp-sharding-admins to MANAGE Sharded-database in compartment
+        cmp-sharding
+      - allow group grp-sharding-admins to MANAGE autonomous-container-databases in
+        compartment cmp-sharding
+      - allow group grp-sharding-admins to MANAGE autonomous-databases in compartment
+        cmp-sharding
+      - allow group grp-sharding-admins to MANAGE autonomous-backups in compartment
+        cmp-sharding
+      - allow group grp-sharding-admins to MANAGE instances in compartment cmp-sharding
+      - allow group grp-sharding-admins to MANAGE instance-family in compartment cmp-sharding
+      - allow group grp-sharding-admins to READ dns-records in compartment cmp-sharding
+      - allow group grp-sharding-admins to INSPECT dns-zone in compartment cmp-sharding
+      - allow group grp-sharding-admins to MANAGE virtual-network-family in compartment
+        cmp-sharding
+      - allow group grp-sharding-admins to READ dns-zone in compartment cmp-sharding
+      - allow group grp-sharding-admins to READ LIMITS in compartment cmp-sharding
+      - allow group grp-sharding-admins to READ tag-namespaces in compartment cmp-sharding
+      - allow group grp-sharding-admins to MANAGE tags in compartment cmp-sharding
+      - allow group grp-sharding-admins to READ Sharded-database-work-requests in
+        compartment cmp-sharding
+      - allow group grp-sharding-admins to INSPECT certificate-authority-bundles in
+        compartment cmp-sharding
+      - allow group grp-sharding-admins to READ cabundle in compartment cmp-sharding
