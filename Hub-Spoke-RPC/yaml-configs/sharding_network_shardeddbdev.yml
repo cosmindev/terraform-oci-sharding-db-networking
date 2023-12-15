@@ -114,17 +114,6 @@ network_configuration:
                 route_table_key: VCN-GDAD-IAD-RT-KEY
                 security_list_keys:
                 - default_security_list
-              LUKE-IAD-KEY:
-                cidr_block: 10.0.1.0/24
-                dhcp_options_key: default_dhcp_options
-                display_name: luke-subnet
-                dns_label: luke
-                ipv6cidr_blocks: []
-                prohibit_internet_ingress: true
-                prohibit_public_ip_on_vnic: true
-                route_table_key: VCN-GDAD-IAD-RT-KEY
-                security_list_keys:
-                - default_security_list
             vcn_specific_gateways:
               internet_gateways:
                 IGW-IAD-KEY:
