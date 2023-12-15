@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Thu Dec 14 2023                                                                          #
+# Last Modified: Fri Dec 15 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -38,26 +38,3 @@ policies_configuration:
       statements:
       - allow group grp-sharding-admins to manage virtual-network-family in compartment
         cmp-sharding
-      - allow group grp-sharding-admins to MANAGE Sharded-database in compartment
-        cmp-sharding
-      - allow group grp-sharding-admins to MANAGE autonomous-container-databases in
-        compartment cmp-sharding
-      - allow group grp-sharding-admins to MANAGE autonomous-databases in compartment
-        cmp-sharding
-      - allow group grp-sharding-admins to MANAGE autonomous-backups in compartment
-        cmp-sharding
-      - allow group grp-sharding-admins to MANAGE instances in compartment cmp-sharding
-      - allow group grp-sharding-admins to MANAGE instance-family in compartment cmp-sharding
-      - allow group grp-sharding-admins to READ dns-records in compartment cmp-sharding
-      - allow group grp-sharding-admins to INSPECT dns-zone in compartment cmp-sharding
-      - allow group grp-sharding-admins to MANAGE virtual-network-family in compartment
-        cmp-sharding
-      - allow group grp-sharding-admins to READ dns-zone in compartment cmp-sharding
-      - allow group grp-sharding-admins to READ LIMITS in compartment cmp-sharding
-      - allow group grp-sharding-admins to READ tag-namespaces in compartment cmp-sharding
-      - allow group grp-sharding-admins to MANAGE tags in compartment cmp-sharding
-      - allow group grp-sharding-admins to READ Sharded-database-work-requests in
-        compartment cmp-sharding
-      - allow group grp-sharding-admins to INSPECT certificate-authority-bundles in
-        compartment cmp-sharding
-      - allow group grp-sharding-admins to READ cabundle in compartment cmp-sharding
