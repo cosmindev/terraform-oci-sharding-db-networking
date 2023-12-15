@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Thu Dec 14 2023                                                                          #
+# Last Modified: Fri Dec 15 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -108,6 +108,17 @@ network_configuration:
                 dhcp_options_key: default_dhcp_options
                 display_name: osd-gsm-proxy-subnet
                 dns_label: osdgsmproxysb
+                ipv6cidr_blocks: []
+                prohibit_internet_ingress: true
+                prohibit_public_ip_on_vnic: true
+                route_table_key: VCN-GDAD-IAD-RT-KEY
+                security_list_keys:
+                - default_security_list
+              LUKE-IAD-KEY:
+                cidr_block: 10.0.1.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: luke-subnet
+                dns_label: luke
                 ipv6cidr_blocks: []
                 prohibit_internet_ingress: true
                 prohibit_public_ip_on_vnic: true
