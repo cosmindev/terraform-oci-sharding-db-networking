@@ -10,7 +10,7 @@
 ---
 compartments_configuration:
   enable_delete: 'false'
-  default_parent_id: PARENT-COMPARTMENT-KEY
+  default_parent_id: PARENT-COMPARTMENT-FROM-ORM-KEY
   compartments:
     CMP-SHARDING-KEY:
       name: cmp-sharding
