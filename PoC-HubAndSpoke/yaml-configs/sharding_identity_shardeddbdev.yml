@@ -111,7 +111,7 @@ policies_configuration:
       - allow certificate authorirties to use keys in this compartment gdad_poc
     GDAD-POC-VIEW-VAULT-KEY:  
       name: gdad-poc-view-vault
-      description: 
+      description: PoC View Vault
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
       - allow keymanagementservice to manage vaults in compartment gdad_poc_certs_vaults_keys
