@@ -117,14 +117,14 @@ policies_configuration:
       - allow keymanagementservice to manage vaults in compartment gdad_poc_certs_vaults_keys
     GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-exadata-compartment-access-vault-and-keys
-      description: 
+      description: poc exadata vaults and keys
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
       - allow dynamic-group gdad-poc-cluster-compartment-resources to manage keys in compartment gdd_certs_vaults_keys 
       - allow dynamic-group gdad-poc-cluster-compartment-resources to read vaults in compartment gdd_certs_vaults_keys
     GDAD-POC-ACCESS-VAULT-AND-KEYS-KEY:  
-      name: gdad-poc-exadata-compartment-access-vault-and-keys
-      description: 
+      name: gdad-poc-access-vault-and-keys
+      description: PoC General vaults and keys
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
       - Allow dynamic-group gdad-poc-certificate-authority-group to use keys in compartment gdad_poc
