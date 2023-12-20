@@ -80,6 +80,11 @@ groups_configuration:
       name: grp-sharding-admins
       description: Sharding Admins
 dynamic_groups_configuration:
+  default_defined_tags:
+  default_freeform_tags:
+    oci-open-lz: oci-sharding
+    oci-open-lz-customer: oci-sharding-poc
+    oci-open-lz-cmp: DB Sharding Dynamic Groups
   dynamic_groups:
     GDAD-POC-CLUSTER-COMPARTMENT-RESOURCES-KEY: 
       name: gdad-poc-cluster-compartment-resources
