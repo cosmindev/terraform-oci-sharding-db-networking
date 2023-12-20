@@ -11,7 +11,7 @@
 network_configuration:
   us-ashburn-1:
     depends_on_regions:
-    default_compartment_id: CMP-SHARDING-KEY
+    default_compartment_id: GDAD-POC-NETWORKS-KEY
     default_enable_cis_checks: false
     default_freeform_tags:
       customer-environment: sharding-environment
@@ -121,7 +121,7 @@ network_configuration:
   eu-frankfurt-1:
     depends_on_regions:
     - us-ashburn-1
-    default_compartment_id: CMP-SHARDING-KEY
+    default_compartment_id: GDAD-POC-NETWORKS-KEY
     default_enable_cis_checks: false
     default_freeform_tags:
       customer-environment: sharding-environment
