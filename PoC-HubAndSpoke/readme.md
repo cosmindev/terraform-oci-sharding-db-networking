@@ -171,7 +171,7 @@ For complete documentation and a larger set of examples on configuring an OCI ne
 
 | STEP |  ACTION |
 |---|---| 
-| **1** | Deploy Through your Tenancy Home Region Region [![Deploy_To_OCI](../diagrams/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/cosmindev/terraform-oci-cis-modules-orchestrator/archive/refs/heads/orm.zip&zipUrlVariables={"input_config_files_urls":"https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/Hub-Spoke-RPC/yaml-configs/sharding_identity_shardeddbdev.yml,https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/Hub-Spoke-RPC/yaml-configs/sharding_network_shardeddbdev.yml"})  |
+| **1** | Deploy Through your Tenancy Home Region Region [![Deploy_To_OCI](../diagrams/DeployToOCI.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/cosmindev/terraform-oci-cis-modules-orchestrator/archive/refs/heads/orm.zip&zipUrlVariables={"input_config_files_urls":"https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/PoC-HubAndSpoke/yaml-configs/sharding_identity_shardeddbdev.yml,https://raw.githubusercontent.com/cosmindev/terraform-oci-sharding-db-networking/main/PoC-HubAndSpoke/yaml-configs/sharding_network_shardeddbdev.yml"})  |
 | **3** | Accept terms,  wait for the configuration to load. |
 | **4** | Set the working directory to “orm-facade”. | 
 | **5** | Set the stack name you prefer. | 
