@@ -87,15 +87,15 @@ dynamic_groups_configuration:
     oci-open-lz-cmp: DB Sharding Dynamic Groups
   dynamic_groups:
     GDAD-POC-CLUSTER-COMPARTMENT-RESOURCES-KEY: 
-      name: gdad-poc-cluster-compartment-resources
+      name: gdad_poc_cluster_compartment_resources
       description: autonomous VM cluster compartment resources
       matching_rule: ANY {resource.compartment.name = 'gdad_poc_clusters'}
     GDAD-POC-COMPARTMENT-COMPUTE-KEY: 
-      name: gdad-poc_compartment_compute
+      name: gdad_poc_compartment_compute
       description: gdad compute resources
       matching_rule: ANY {resource.compartment.name = 'gdad_poc_compute'}
     GDAD-POC-CERTIFICATE-AUTHORITY-GROUP-KEY: 
-      name: gdad-poc-certificate-authority-group
+      name: gdad_poc_certificate_authority_group
       description: Certificate Authority Dynamic Groups
       matching_rule: ALL {resource.type='certificateauthority', resource.compartment.name='gdad_poc_certs_vaults_keys'}
 policies_configuration:
@@ -118,12 +118,12 @@ policies_configuration:
       description: poc exadata vaults and keys policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - allow dynamic-group gdad-poc-cluster-compartment-resources to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys 
-      - allow dynamic-group gdad-poc-cluster-compartment-resources to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - allow dynamic-group gdad_poc_cluster_compartment_resources to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys 
+      - allow dynamic-group gdad_poc_cluster_compartment_resources to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-access-vault-and-keys
       description: PoC General vaults and keys policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - Allow dynamic-group gdad-poc-certificate-authority-group to use keys in compartment gdad_poc
-      - Allow dynamic-group gdad-poc-certificate-authority-group to manage objects in compartment gdad_poc
+      - Allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc
+      - Allow dynamic-group gdad_poc_certificate_authority_group to manage objects in compartment gdad_poc
