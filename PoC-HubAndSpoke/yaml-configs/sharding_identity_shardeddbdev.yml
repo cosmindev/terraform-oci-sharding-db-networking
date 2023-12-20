@@ -109,20 +109,20 @@ policies_configuration:
       - allow certificate authorirties to use keys in this compartment gdad_poc
     GDAD-POC-VIEW-VAULT-KEY:  
       name: gdad-poc-view-vault
-      description: PoC View Vault
+      description: PoC View Vault Policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - allow keymanagementservice to manage vaults in compartment gdad_poc_certs_vaults_keys
+      - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-exadata-compartment-access-vault-and-keys
-      description: poc exadata vaults and keys
+      description: poc exadata vaults and keys policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - allow dynamic-group gdad-poc-cluster-compartment-resources to manage keys in compartment gdad_poc_certs_vaults_keys 
-      - allow dynamic-group gdad-poc-cluster-compartment-resources to read vaults in compartment gdad_poc_certs_vaults_keys
+      - allow dynamic-group gdad-poc-cluster-compartment-resources to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys 
+      - allow dynamic-group gdad-poc-cluster-compartment-resources to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-access-vault-and-keys
-      description: PoC General vaults and keys
+      description: PoC General vaults and keys policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
       - Allow dynamic-group gdad-poc-certificate-authority-group to use keys in compartment gdad_poc
