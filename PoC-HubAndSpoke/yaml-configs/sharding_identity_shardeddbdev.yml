@@ -101,18 +101,18 @@ dynamic_groups_configuration:
 policies_configuration:
   enable_cis_benchmark_checks: 'false'
   supplied_policies:
-    CERTIFICATE-AUTHORITY-POLICY-KEY:  
-      name: CertificateAuthority-Policy
-      description: Allow certificate authorities to use keys in this compartment gdad_poc
-      compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
-      statements:
-      - allow certificate authorities to use keys in this compartment gdad_poc
-    # GDAD-POC-VIEW-VAULT-KEY:  
-    #  name: gdad-poc-view-vault
-    #  description: PoC View Vault Policies
+    # CERTIFICATE-AUTHORITY-POLICY-KEY:  
+    #  name: CertificateAuthority-Policy
+    #  description: Allow certificate authorities to use keys in this compartment gdad_poc
     #  compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
     #  statements:
-      # - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
+    #  - allow certificate authorities to use keys in this compartment gdad_poc
+    GDAD-POC-VIEW-VAULT-KEY:  
+      name: gdad-poc-view-vault
+      description: PoC View Vault Policies
+      compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
+      statements:
+      - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-exadata-compartment-access-vault-and-keys
       description: poc exadata vaults and keys policies
