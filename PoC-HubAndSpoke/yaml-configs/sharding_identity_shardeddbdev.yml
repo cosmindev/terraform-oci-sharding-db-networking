@@ -107,11 +107,11 @@ policies_configuration:
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
       - allow certificate authorities to use keys in this compartment gdad_poc
-    GDAD-POC-VIEW-VAULT-KEY:  
-      name: gdad-poc-view-vault
-      description: PoC View Vault Policies
-      compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
-      statements:
+    # GDAD-POC-VIEW-VAULT-KEY:  
+    #  name: gdad-poc-view-vault
+    #  description: PoC View Vault Policies
+    #  compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
+    #  statements:
       # - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-exadata-compartment-access-vault-and-keys
