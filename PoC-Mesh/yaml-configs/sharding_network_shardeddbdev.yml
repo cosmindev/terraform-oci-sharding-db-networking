@@ -65,7 +65,7 @@ network_configuration:
                   protocol: ALL
                   stateless: false
                 ingress_rules:
-                - description: pring from 0.0.0.0/0
+                - description: ping from 0.0.0.0/0
                   protocol: ICMP
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
@@ -193,7 +193,7 @@ network_configuration:
                   protocol: ALL
                   stateless: false
                 ingress_rules:
-                - description: pring from 0.0.0.0/0
+                - description: ping from 0.0.0.0/0
                   protocol: ICMP
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
@@ -335,7 +335,7 @@ network_configuration:
                   protocol: ALL
                   stateless: false
                 ingress_rules:
-                - description: pring from 0.0.0.0/0
+                - description: ping from 0.0.0.0/0
                   protocol: ICMP
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
