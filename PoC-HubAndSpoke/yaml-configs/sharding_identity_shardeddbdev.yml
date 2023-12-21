@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Wed Dec 20 2023                                                                          #
+# Last Modified: Thu Dec 21 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -101,12 +101,12 @@ dynamic_groups_configuration:
 policies_configuration:
   enable_cis_benchmark_checks: 'false'
   supplied_policies:
-    # CERTIFICATE-AUTHORITY-POLICY-KEY:  
-    #  name: CertificateAuthority-Policy
-    #  description: Allow certificate authorities to use keys in this compartment gdad_poc
-    #  compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
-    #  statements:
-    #  - allow certificate authorities to use keys in this compartment gdad_poc
+    CERTIFICATE-AUTHORITY-POLICY-KEY:  
+      name: CertificateAuthority-Policy
+      description: Allow certificate authorities to use keys in this compartment gdad_poc
+      compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
+      statements:
+      - allow dynamic-group gdad_poc_certificate_authority_group to use keys in this compartment gdad_poc
     GDAD-POC-VIEW-VAULT-KEY:  
       name: gdad-poc-view-vault
       description: PoC View Vault Policies
