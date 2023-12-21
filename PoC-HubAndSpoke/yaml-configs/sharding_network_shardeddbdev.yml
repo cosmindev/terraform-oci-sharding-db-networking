@@ -288,7 +288,7 @@ network_configuration:
                   peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-KEY
                   peer_region_name: us-ashburn-1
               drg_route_tables:
-                DRG-RT-VCN-GDAD-FRA-TO-ALL-REG-VCNS-KEY:
+                DRG-RT-VCN-GDAD-AMS-TO-ALL-REG-VCNS-KEY:
                   display_name: drg-rt-vcn-gdad-ams-to-all-reg-vcns-vcns
                   is_ecmp_enabled: false
                   route_rules:
