@@ -93,7 +93,7 @@ network_configuration:
                   TO-SGW-IAD-KEY:
                     description: SGW route table to SGW
                     destination: all-services
-                    destination_type: CIDR_BLOCK
+                    destination_type: SERVICE_CIDR_BLOCK
                     network_entity_key: SGW-GDAD-IAD-KEY
                   TO-VCN-GDAD-FRA-KEY:
                     description: Route for accessing VCN-GDAD-FRA in Frankfurt through the DRG RPC
@@ -207,7 +207,7 @@ network_configuration:
                   TO-SGW-FRA-KEY:
                     description: SGW route table to SGW
                     destination: all-services
-                    destination_type: CIDR_BLOCK
+                    destination_type: SERVICE_CIDR_BLOCK
                     network_entity_key: SGW-GDAD-FRA-KEY
                   TO-VCN-GDAD-IAD-KEY:
                     description: Route for accessing VCN-GDAD-IAD in Ashburn through the DRG RPC
@@ -341,7 +341,7 @@ network_configuration:
                   TO-SGW-AMS-KEY:
                     description: SGW route table to SGW
                     destination: all-services
-                    destination_type: CIDR_BLOCK
+                    destination_type: SERVICE_CIDR_BLOCK
                     network_entity_key: SGW-GDAD-AMS-KEY
                   TO-VCN-GDAD-IAD-KEY:
                     description: Route for accessing VCN-GDAD-IAD in Ashburn through the DRG RPC
