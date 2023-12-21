@@ -290,7 +290,7 @@ network_configuration:
                   peer_region_name: us-ashburn-1
                 RPC-VCN-GDAD-AMS-VCN-GDAD-FRA-KEY:
                   display_name: rpc-vcn-gdad-ams-vcn-gdad-fra
-                  peer_key: ocid1.remotepeeringconnection.oc1.eu-frankfurt-1.aaaaaaaaq2wkmbwe5colg32rhffmyw3yuek3ol5zvcqug3hruyfhfclwynxa
+                  peer_id: ocid1.remotepeeringconnection.oc1.eu-frankfurt-1.aaaaaaaaq2wkmbwe5colg32rhffmyw3yuek3ol5zvcqug3hruyfhfclwynxa
                   peer_region_name: eu-frankfurt-1
               drg_route_tables:
                 DRG-RT-VCN-GDAD-AMS-TO-ALL-REG-VCNS-KEY:
