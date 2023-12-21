@@ -35,6 +35,7 @@ network_configuration:
                   display_name: rpc-vcn-gdad-iad-vcn-gdad-fra
                 RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-KEY:
                   display_name: rpc-vcn-gdad-iad-vcn-gdad-ams
+                # For each new region add here a corresponding RPC
               drg_route_tables:
                 DRG-RT-VCN-GDAD-IAD-TO-ALL-REG-VCNS-KEY:
                   display_name: drg-rt-vcn-gdad-iad-to-all-reg-vcns
@@ -48,6 +49,7 @@ network_configuration:
                       destination: 10.3.0.0/16
                       destination_type: CIDR_BLOCK
                       next_hop_drg_attachment_key: RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-KEY
+                    # For each new region add here a corresponding DRG Route table route rule
         vcns:
           GDADV10.0IAD-KEY:
             block_nat_traffic: false
@@ -101,22 +103,23 @@ network_configuration:
                     destination_type: CIDR_BLOCK
                     network_entity_key: GDAD-IAD-DRG-KEY
                   TO-VCN-GDAD-AMS-KEY:
-                    description: Route for accessing VCN-GDAD-FRA in Frankfurt through the DRG RPC
+                    description: Route for accessing VCN-GDAD-AMS in Amsterdam through the DRG RPC
                     destination: 10.3.0.0/16
                     destination_type: CIDR_BLOCK
                     network_entity_key: GDAD-IAD-DRG-KEY
-            subnets:
-              OSD-GSM-PROXY-SUBNET-IAD-KEY:
-                cidr_block: 10.1.0.0/24
-                dhcp_options_key: default_dhcp_options
-                display_name: osd-gsm-iad-proxy-subnet
-                dns_label: osdgsmiadpr
-                ipv6cidr_blocks: []
-                prohibit_internet_ingress: false
-                prohibit_public_ip_on_vnic: false
-                route_table_key: VCN-GDAD-IAD-RT-KEY
-                security_list_keys:
-                - default_security_list
+                  # For each new region add here a corresponding Route table route rule
+            #subnets:
+            #  OSD-GSM-PROXY-SUBNET-IAD-KEY:
+            #    cidr_block: 10.1.0.0/24
+            #    dhcp_options_key: default_dhcp_options
+            #    display_name: osd-gsm-iad-proxy-subnet
+            #    dns_label: osdgsmiadpr
+            #    ipv6cidr_blocks: []
+            #    prohibit_internet_ingress: false
+            #    prohibit_public_ip_on_vnic: false
+            #    route_table_key: VCN-GDAD-IAD-RT-KEY
+            #    security_list_keys:
+            #    - default_security_list
             vcn_specific_gateways:
               internet_gateways:
                 IGW-GDAD-IAD-KEY:
@@ -394,3 +397,4 @@ network_configuration:
                 SGW-GDAD-AMS-KEY:
                   display_name: sgw-gdad-ams
                   services: all-services
+# For each new region add here a corresponding new region network configuration
