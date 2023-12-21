@@ -108,18 +108,18 @@ network_configuration:
                     destination_type: CIDR_BLOCK
                     network_entity_key: GDAD-IAD-DRG-KEY
                   # For each new region add here a corresponding Route table route rule
-            #subnets:
-            #  OSD-GSM-PROXY-SUBNET-IAD-KEY:
-            #    cidr_block: 10.1.0.0/24
-            #    dhcp_options_key: default_dhcp_options
-            #    display_name: osd-gsm-iad-proxy-subnet
-            #    dns_label: osdgsmiadpr
-            #    ipv6cidr_blocks: []
-            #    prohibit_internet_ingress: false
-            #    prohibit_public_ip_on_vnic: false
-            #    route_table_key: VCN-GDAD-IAD-RT-KEY
-            #    security_list_keys:
-            #    - default_security_list
+            subnets:
+              OSD-GSM-PROXY-SUBNET-IAD-KEY:
+                cidr_block: 10.1.0.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: osd-gsm-iad-proxy-subnet
+                dns_label: osdgsmiadpr
+                ipv6cidr_blocks: []
+                prohibit_internet_ingress: false
+                prohibit_public_ip_on_vnic: false
+                route_table_key: VCN-GDAD-IAD-RT-KEY
+                security_list_keys:
+                - default_security_list
             vcn_specific_gateways:
               internet_gateways:
                 IGW-GDAD-IAD-KEY:
