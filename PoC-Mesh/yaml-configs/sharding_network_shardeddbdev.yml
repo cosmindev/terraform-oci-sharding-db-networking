@@ -190,17 +190,24 @@ network_configuration:
                 - description: egress to 0.0.0.0/0 over TCP
                   dst: 0.0.0.0/0
                   dst_type: CIDR_BLOCK
-                  protocol: TCP
+                  protocol: ALL
                   stateless: false
                 ingress_rules:
-                - description: ingress from 0.0.0.0/0 over TCP22
-                  protocol: TCP
+                - description: pring from 0.0.0.0/0
+                  protocol: ICMP
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
                   stateless: false
                 - description: ingress from 0.0.0.0/0 over HTTPS443
                   dst_port_max: 443
                   dst_port_min: 443
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over TCP22
+                  dst_port_max: 22
+                  dst_port_min: 22
                   protocol: TCP
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
@@ -320,22 +327,29 @@ network_configuration:
             - 10.3.0.0/16
             security_lists:
               GDAD-SECLIST-AMS-KEY:
-                display_name: gdad-seclist-fra
+                display_name: gdad-seclist-ams
                 egress_rules:
                 - description: egress to 0.0.0.0/0 over TCP
                   dst: 0.0.0.0/0
                   dst_type: CIDR_BLOCK
-                  protocol: TCP
+                  protocol: ALL
                   stateless: false
                 ingress_rules:
-                - description: ingress from 0.0.0.0/0 over TCP22
-                  protocol: TCP
+                - description: pring from 0.0.0.0/0
+                  protocol: ICMP
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
                   stateless: false
                 - description: ingress from 0.0.0.0/0 over HTTPS443
                   dst_port_max: 443
                   dst_port_min: 443
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over TCP22
+                  dst_port_max: 22
+                  dst_port_min: 22
                   protocol: TCP
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
