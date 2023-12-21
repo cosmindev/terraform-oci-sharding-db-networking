@@ -92,7 +92,7 @@ network_configuration:
                     network_entity_key: IGW-GDAD-IAD-KEY
                   TO-SGW-IAD-KEY:
                     description: SGW route table to SGW
-                    destination: all-services
+                    destination: objectstorage
                     destination_type: SERVICE_CIDR_BLOCK
                     network_entity_key: SGW-GDAD-IAD-KEY
                   TO-VCN-GDAD-FRA-KEY:
