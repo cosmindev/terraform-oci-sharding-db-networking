@@ -112,8 +112,8 @@ network_configuration:
                 display_name: osd-gsm-iad-proxy-subnet
                 dns_label: osdgsmiadpr
                 ipv6cidr_blocks: []
-                prohibit_internet_ingress: true
-                prohibit_public_ip_on_vnic: true
+                prohibit_internet_ingress: false
+                prohibit_public_ip_on_vnic: false
                 route_table_key: VCN-GDAD-IAD-RT-KEY
                 security_list_keys:
                 - default_security_list
