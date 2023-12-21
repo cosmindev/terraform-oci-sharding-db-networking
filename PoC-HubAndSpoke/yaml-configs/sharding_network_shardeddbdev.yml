@@ -55,28 +55,28 @@ network_configuration:
             block_nat_traffic: false
             cidr_blocks:
             - 10.1.0.0/16
-            default-security-list:
-              egress_rules:
-              - description: egress to 0.0.0.0/0 over ALL protocols
-                dst: 0.0.0.0/0
-                dst_type: CIDR_BLOCK
-                protocol: ALL
-                stateless: false
-              ingress_rules:
-              - description: ingress from 0.0.0.0/0 over TCP22
-                dst_port_max: 22
-                dst_port_min: 22
-                protocol: TCP
-                src: 0.0.0.0/0
-                src_type: CIDR_BLOCK
-                stateless: false
-              - description: ingress from 0.0.0.0/0 over TCP443
-                dst_port_max: 443
-                dst_port_min: 443
-                protocol: TCP
-                src: 0.0.0.0/0
-                src_type: CIDR_BLOCK
-                stateless: false
+            security_lists:
+              GDAD-SECLIST-IAD-KEY:
+                display_name: gdad-seclist-fra
+                egress_rules:
+                - description: egress to 0.0.0.0/0 over TCP
+                  dst: 0.0.0.0/0
+                  dst_type: CIDR_BLOCK
+                  protocol: TCP
+                  stateless: false
+                ingress_rules:
+                - description: ingress from 0.0.0.0/0 over TCP22
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over HTTPS443
+                  dst_port_max: 443
+                  dst_port_min: 443
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
             display_name: gdadv10.0IAD
             dns_label: gdav100iad
             is_attach_drg: false
@@ -119,7 +119,7 @@ network_configuration:
                 prohibit_public_ip_on_vnic: false
                 route_table_key: VCN-GDAD-IAD-RT-KEY
                 security_list_keys:
-                - default_security_list
+                - GDAD-SECLIST-IAD-KEY
             vcn_specific_gateways:
               internet_gateways:
                 IGW-GDAD-IAD-KEY:
@@ -309,28 +309,28 @@ network_configuration:
             block_nat_traffic: false
             cidr_blocks:
             - 10.3.0.0/16
-            default-security-list:
-              egress_rules:
-              - description: egress to 0.0.0.0/0 over ALL protocols
-                dst: 0.0.0.0/0
-                dst_type: CIDR_BLOCK
-                protocol: ALL
-                stateless: false
-              ingress_rules:
-              - description: ingress from 0.0.0.0/0 over TCP22
-                dst_port_max: 22
-                dst_port_min: 22
-                protocol: TCP
-                src: 0.0.0.0/0
-                src_type: CIDR_BLOCK
-                stateless: false
-              - description: ingress from 0.0.0.0/0 over TCP443
-                dst_port_max: 443
-                dst_port_min: 443
-                protocol: TCP
-                src: 0.0.0.0/0
-                src_type: CIDR_BLOCK
-                stateless: false
+            security_lists:
+              GDAD-SECLIST-AMS-KEY:
+                display_name: gdad-seclist-fra
+                egress_rules:
+                - description: egress to 0.0.0.0/0 over TCP
+                  dst: 0.0.0.0/0
+                  dst_type: CIDR_BLOCK
+                  protocol: TCP
+                  stateless: false
+                ingress_rules:
+                - description: ingress from 0.0.0.0/0 over TCP22
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over HTTPS443
+                  dst_port_max: 443
+                  dst_port_min: 443
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
             display_name: gdadv10.0AMS
             dns_label: gdav100ams
             is_attach_drg: false
@@ -368,7 +368,7 @@ network_configuration:
                 prohibit_public_ip_on_vnic: true
                 route_table_key: VCN-GDAD-AMS-RT-KEY
                 security_list_keys:
-                - default_security_list
+                - GDAD-SECLIST-AMS-KEY
               GDAD-DATABASE-AMS-KEY:
                 cidr_block: 10.3.20.0/24
                 dhcp_options_key: default_dhcp_options
@@ -379,7 +379,7 @@ network_configuration:
                 prohibit_public_ip_on_vnic: true
                 route_table_key: VCN-GDAD-AMS-RT-KEY
                 security_list_keys:
-                - default_security_list
+                - GDAD-SECLIST-AMS-KEY
               GDAD-APPLICATION-AMS-KEY:
                 cidr_block: 10.3.30.0/24
                 dhcp_options_key: default_dhcp_options
@@ -390,7 +390,7 @@ network_configuration:
                 prohibit_public_ip_on_vnic: true
                 route_table_key: VCN-GDAD-AMS-RT-KEY
                 security_list_keys:
-                - default_security_list
+                -GDAD-SECLIST-AMS-KEY
             vcn_specific_gateways:
               internet_gateways:
               service_gateways:
