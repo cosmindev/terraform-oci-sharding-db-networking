@@ -197,6 +197,13 @@ network_configuration:
                 src: 0.0.0.0/0
                 src_type: CIDR_BLOCK
                 stateless: false
+              - description: ingress from 0.0.0.0/0 over TCP80
+                dst_port_max: 80
+                dst_port_min: 80
+                protocol: TCP
+                src: 0.0.0.0/0
+                src_type: CIDR_BLOCK
+                stateless: false
             display_name: gdadv10.0FRA
             dns_label: gdav100fra
             is_attach_drg: false
