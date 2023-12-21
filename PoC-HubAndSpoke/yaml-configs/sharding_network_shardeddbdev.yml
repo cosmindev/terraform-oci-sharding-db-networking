@@ -110,7 +110,7 @@ network_configuration:
                 cidr_block: 10.1.0.0/24
                 dhcp_options_key: default_dhcp_options
                 display_name: osd-gsm-iad-proxy-subnet
-                dns_label: osdgsmiadproxysb
+                dns_label: osdgsmiadproxy
                 ipv6cidr_blocks: []
                 prohibit_internet_ingress: true
                 prohibit_public_ip_on_vnic: true
