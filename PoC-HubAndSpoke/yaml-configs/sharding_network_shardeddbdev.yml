@@ -6,7 +6,6 @@
 # Last Modified: Thu Dec 21 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
-
 ---
 network_configuration:
   us-ashburn-1:
@@ -390,11 +389,10 @@ network_configuration:
                 prohibit_public_ip_on_vnic: true
                 route_table_key: VCN-GDAD-AMS-RT-KEY
                 security_list_keys:
-                -GDAD-SECLIST-AMS-KEY
+                - GDAD-SECLIST-AMS-KEY
             vcn_specific_gateways:
               internet_gateways:
               service_gateways:
                 SGW-GDAD-AMS-KEY:
                   display_name: sgw-gdad-ams
                   services: all-services
-# For each new region add here a corresponding new region network configuration
