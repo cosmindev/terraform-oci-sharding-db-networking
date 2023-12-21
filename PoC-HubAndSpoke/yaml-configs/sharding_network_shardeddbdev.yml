@@ -125,7 +125,7 @@ network_configuration:
               service_gateways:
                 SGW-GDAD-IAD-KEY:
                   display_name: sgw-gdad-iad
-                  services: all-services
+                  services: objectstorage
   eu-frankfurt-1:
     depends_on_regions:
     - us-ashburn-1
