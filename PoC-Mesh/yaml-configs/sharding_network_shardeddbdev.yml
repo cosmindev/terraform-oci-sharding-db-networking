@@ -287,7 +287,6 @@ network_configuration:
               remote_peering_connections:
                 RPC-VCN-GDAD-AMS-VCN-GDAD-IAD-KEY:
                   display_name: rpc-vcn-gdad-ams-vcn-gdad-iad
-                  peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-KEY
                   peer_region_name: us-ashburn-1
                 RPC-VCN-GDAD-AMS-VCN-GDAD-FRA-KEY:
                   display_name: rpc-vcn-gdad-ams-vcn-gdad-fra
