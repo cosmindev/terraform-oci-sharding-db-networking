@@ -106,7 +106,7 @@ policies_configuration:
       description: Allow certificate authorities to use keys in this compartment gdad_poc
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - allow dynamic-group gdad_poc_certificate_authority_group to use keys in this compartment gdad_poc
+      - allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc
     GDAD-POC-VIEW-VAULT-KEY:  
       name: gdad-poc-view-vault
       description: PoC View Vault Policies
