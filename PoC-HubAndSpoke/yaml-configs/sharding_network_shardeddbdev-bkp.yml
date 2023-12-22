@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Fri Dec 22 2023                                                                          #
+# Last Modified: Thu Dec 21 2023                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 ---
@@ -25,6 +25,7 @@ network_configuration:
               drg_attachments:
                 DRG-GDAD-IAD-VCN-GDAD-IAD-ATTACH-KEY:
                   display_name: drg-gdad-iad-vcn-dgad-iad-attach
+                  drg_route_table_key: DRG-RT-VCN-GDAD-IAD-TO-ALL-REG-VCNS-KEY
                   network_details:
                     attached_resource_key: GDADV10.0IAD-KEY
                     type: VCN
@@ -34,6 +35,20 @@ network_configuration:
                 RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-KEY:
                   display_name: rpc-vcn-gdad-iad-vcn-gdad-ams
                 # For each new region add here a corresponding RPC
+              drg_route_tables:
+                DRG-RT-VCN-GDAD-IAD-TO-ALL-REG-VCNS-KEY:
+                  display_name: drg-rt-vcn-gdad-iad-to-all-reg-vcns
+                  is_ecmp_enabled: false
+                  route_rules:
+                    ALL-TRAFFIC-TO-VCN-GDAD-FRA-TO-RPC-KEY:
+                      destination: 10.2.0.0/16
+                      destination_type: CIDR_BLOCK
+                      next_hop_drg_attachment_key: RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY
+                    ALL-TRAFFIC-TO-VCN-GDAD-AMS-TO-RPC-KEY:
+                      destination: 10.3.0.0/16
+                      destination_type: CIDR_BLOCK
+                      next_hop_drg_attachment_key: RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-KEY
+                    # For each new region add here a corresponding DRG Route table route rule
         vcns:
           GDADV10.0IAD-KEY:
             block_nat_traffic: false
@@ -43,7 +58,7 @@ network_configuration:
               GDAD-SECLIST-IAD-KEY:
                 display_name: gdad-seclist-iad
                 egress_rules:
-                - description: egress to 0.0.0.0/0 over ALL protocols
+                - description: egress to 0.0.0.0/0 over TCP
                   dst: 0.0.0.0/0
                   dst_type: CIDR_BLOCK
                   protocol: ALL
@@ -51,7 +66,6 @@ network_configuration:
                 ingress_rules:
                 - description: ping from 0.0.0.0/0
                   protocol: ICMP
-                  icmp_type: 8
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
                   stateless: false
@@ -139,6 +153,7 @@ network_configuration:
               drg_attachments:
                 DRG-GDAD-FRA-VCN-GDAD-FRA-ATTACH-KEY:
                   display_name: drg-gdad-fra-vcn-dgad-fra-attach
+                  drg_route_table_key: DRG-RT-VCN-GDAD-FRA-TO-ALL-REG-VCNS-KEY
                   network_details:
                     attached_resource_key: GDADV10.0FRA-KEY
                     type: VCN
@@ -147,6 +162,20 @@ network_configuration:
                   display_name: rpc-vcn-gdad-fra-vcn-gdad-iad
                   peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY
                   peer_region_name: us-ashburn-1
+              drg_route_tables:
+                DRG-RT-VCN-GDAD-FRA-TO-ALL-REG-VCNS-KEY:
+                  display_name: drg-rt-vcn-gdad-fra-to-all-reg-vcns-vcns
+                  is_ecmp_enabled: false
+                  route_rules:
+                    ALL-TRAFFIC-TO-VCN-GDAD-IAD-TO-RPC-KEY:
+                      destination: 10.1.0.0/16
+                      destination_type: CIDR_BLOCK
+                      next_hop_drg_attachment_key: RPC-VCN-GDAD-FRA-VCN-GDAD-IAD-KEY
+                    ALL-TRAFFIC-TO-VCN-GDAD-AMS-TO-RPC-KEY:
+                      destination: 10.3.0.0/16
+                      destination_type: CIDR_BLOCK
+                      next_hop_drg_attachment_key: RPC-VCN-GDAD-FRA-VCN-GDAD-IAD-KEY
+                    # For each new region add here a corresponding DRG Route table route rule
         vcns:
           GDADV10.0FRA-KEY:
             block_nat_traffic: false
@@ -164,7 +193,6 @@ network_configuration:
                 ingress_rules:
                 - description: ping from 0.0.0.0/0
                   protocol: ICMP
-                  icmp_type: 8
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
                   stateless: false
@@ -266,6 +294,7 @@ network_configuration:
               drg_attachments:
                 DRG-GDAD-AMS-VCN-GDAD-AMS-ATTACH-KEY:
                   display_name: drg-gdad-ams-vcn-dgad-ams-attach
+                  drg_route_table_key: DRG-RT-VCN-GDAD-AMS-TO-ALL-REG-VCNS-KEY
                   network_details:
                     attached_resource_key: GDADV10.0AMS-KEY
                     type: VCN
@@ -274,6 +303,20 @@ network_configuration:
                   display_name: rpc-vcn-gdad-ams-vcn-gdad-iad
                   peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-KEY
                   peer_region_name: us-ashburn-1
+              drg_route_tables:
+                DRG-RT-VCN-GDAD-AMS-TO-ALL-REG-VCNS-KEY:
+                  display_name: drg-rt-vcn-gdad-ams-to-all-reg-vcns-vcns
+                  is_ecmp_enabled: false
+                  route_rules:
+                    ALL-TRAFFIC-TO-VCN-GDAD-IAD-TO-RPC-KEY:
+                      destination: 10.1.0.0/16
+                      destination_type: CIDR_BLOCK
+                      next_hop_drg_attachment_key: RPC-VCN-GDAD-AMS-VCN-GDAD-IAD-KEY
+                    ALL-TRAFFIC-TO-VCN-GDAD-FRA-TO-RPC-KEY:
+                      destination: 10.2.0.0/16
+                      destination_type: CIDR_BLOCK
+                      next_hop_drg_attachment_key: RPC-VCN-GDAD-AMS-VCN-GDAD-IAD-KEY
+                    # For each new region add here a corresponding DRG Route table route rule
         vcns:
           GDADV10.0AMS-KEY:
             block_nat_traffic: false
@@ -291,7 +334,6 @@ network_configuration:
                 ingress_rules:
                 - description: ping from 0.0.0.0/0
                   protocol: ICMP
-                  icmp_type: 8
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
                   stateless: false
@@ -375,4 +417,3 @@ network_configuration:
                 SGW-GDAD-AMS-KEY:
                   display_name: sgw-gdad-ams
                   services: all-services
-# For each new region add here a new network configuration for that region
