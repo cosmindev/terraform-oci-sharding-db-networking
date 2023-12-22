@@ -25,6 +25,7 @@ network_configuration:
               drg_attachments:
                 DRG-GDAD-IAD-VCN-GDAD-IAD-ATTACH-KEY:
                   display_name: drg-gdad-iad-vcn-dgad-iad-attach
+                  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
                   network_details:
                     attached_resource_key: GDADV10.0IAD-KEY
                     type: VCN
