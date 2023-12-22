@@ -36,7 +36,7 @@ network_configuration:
                 # For each new region add here a corresponding RPC
               drg_route_tables:
                 DRG-GDAD-RT-HUB-KEY:
-                  display_name: drg-gdad--rt-hub
+                  display_name: drg-gdad-rt-hub
                   import_drg_route_distribution_key: IMPORT-GDAD-HUB-RTD-KEY
                   is_ecmp_enabled: false
                   route_rules: null
@@ -49,11 +49,13 @@ network_configuration:
                       action: ACCEPT
                       match_criteria:
                         attachment_type: VCN
+                        match_type: DRG_ATTACHMENT_TYPE
                       priority: 10
                     ROUTE-TO-RPCS-KEY:
                       action: ACCEPT
                       match_criteria:
                         attachment_type: REMOTE_PEERING_CONNECTION
+                        match_type: DRG_ATTACHMENT_TYPE
                       priority: 20
         vcns:
           GDADV10.0IAD-KEY:
