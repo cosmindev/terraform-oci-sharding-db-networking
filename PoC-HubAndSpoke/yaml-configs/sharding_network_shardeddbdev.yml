@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Fri Dec 22 2023                                                                          #
+# Last Modified: Wed Jan 03 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 ---
@@ -29,6 +29,18 @@ network_configuration:
                   network_details:
                     attached_resource_key: GDADV10.0IAD-KEY
                     type: VCN
+                DRG-GDAD-IAD-RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-ATTACH-KEY:
+                  display_name: drg-gdad-iad-rpc-vcn-gdad-iad-vcn-gdad-fra-attach
+                  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
+                  network_details:
+                    attached_resource_key: RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY
+                    type: REMOTE_PEERING_CONNECTION
+                DRG-GDAD-IAD-RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-ATTACH-KEY:
+                  display_name: drg-gdad-iad-rpc-vcn-gdad-iad-vcn-gdad-ams-attach
+                  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
+                  network_details:
+                    attached_resource_key: RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-KEY
+                    type: REMOTE_PEERING_CONNECTION
               remote_peering_connections:
                 RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY:
                   display_name: rpc-vcn-gdad-iad-vcn-gdad-fra
