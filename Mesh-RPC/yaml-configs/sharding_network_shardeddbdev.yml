@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Thu Dec 14 2023                                                                          #
+# Last Modified: Thu Jan 04 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -57,7 +57,7 @@ network_configuration:
             block_nat_traffic: false
             cidr_blocks:
             - 10.0.0.0/22
-            default-security-list:
+            default_security_list:
               egress_rules:
               - description: egress to 0.0.0.0/0 over ALL protocols
                 dst: 0.0.0.0/0
@@ -171,7 +171,7 @@ network_configuration:
             block_nat_traffic: false
             cidr_blocks:
             - 10.0.4.0/22
-            default-security-list:
+            default_security_list:
               egress_rules:
               - description: egress to 0.0.0.0/0 over ALL protocols
                 dst: 0.0.0.0/0
@@ -285,7 +285,7 @@ network_configuration:
             block_nat_traffic: false
             cidr_blocks:
             - 10.0.8.0/22
-            default-security-list:
+            default_security_list:
               egress_rules:
               - description: egress to 0.0.0.0/0 over ALL protocols
                 dst: 0.0.0.0/0

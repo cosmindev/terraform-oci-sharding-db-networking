@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Wed Jan 03 2024                                                                          #
+# Last Modified: Thu Jan 04 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 ---
@@ -325,6 +325,28 @@ network_configuration:
             block_nat_traffic: false
             cidr_blocks:
             - 10.3.0.0/16
+            default_security_list:
+              egress_rules:
+              - description: egress to 0.0.0.0/0 over ALL protocols
+                dst: 0.0.0.0/0
+                dst_type: CIDR_BLOCK
+                protocol: ALL
+                stateless: false
+              ingress_rules:
+              - description: ingress from 0.0.0.0/0 over TCP22
+                dst_port_max: 22
+                dst_port_min: 22
+                protocol: TCP
+                src: 0.0.0.0/0
+                src_type: CIDR_BLOCK
+                stateless: false
+              - description: ingress from 0.0.0.0/0 over TCP443
+                dst_port_max: 443
+                dst_port_min: 443
+                protocol: TCP
+                src: 0.0.0.0/0
+                src_type: CIDR_BLOCK
+                stateless: false
             security_lists:
               GDAD-SECLIST-AMS-KEY:
                 display_name: gdad-seclist-ams
@@ -402,7 +424,7 @@ network_configuration:
                 prohibit_public_ip_on_vnic: true
                 route_table_key: VCN-GDAD-AMS-RT-KEY
                 security_list_keys:
-                - GDAD-SECLIST-AMS-KEY
+                - default_security_list
               GDAD-APPLICATION-AMS-KEY:
                 cidr_block: 10.3.30.0/24
                 dhcp_options_key: default_dhcp_options
