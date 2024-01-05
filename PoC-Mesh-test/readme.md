@@ -1,6 +1,6 @@
 # OCI DB Sharding Service - Required IAM & Network Configurations for the customer tenancy
 
-# RPC HUB&SPOKE Network Topology
+# RPC Mesh Network Topology
 
 ## **Table of Contents**
 
