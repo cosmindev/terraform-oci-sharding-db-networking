@@ -89,11 +89,11 @@ dynamic_groups_configuration:
     GDAD-POC-CLUSTER-COMPARTMENT-RESOURCES-KEY: 
       name: gdad_poc_cluster_compartment_resources_mesh_cotud
       description: autonomous VM cluster compartment resources
-      matching_rule: ANY {resource.compartment.name = 'gdad_poc_clusters'}
+      matching_rule: ANY {resource.compartment.name = 'gdad_poc_clusters_mesh_cotud'}
     GDAD-POC-COMPARTMENT-COMPUTE-KEY: 
       name: gdad_poc_compartment_compute_mesh_cotud
       description: gdad compute resources
-      matching_rule: ANY {resource.compartment.name = 'gdad_poc_compute'}
+      matching_rule: ANY {resource.compartment.name = 'gdad_poc_compute_mesh_cotud'}
     GDAD-POC-CERTIFICATE-AUTHORITY-GROUP-KEY: 
       name: gdad_poc_certificate_authority_group_mesh_cotud
       description: Certificate Authority Dynamic Groups
