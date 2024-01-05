@@ -93,11 +93,11 @@ dynamic_groups_configuration:
     GDAD-POC-COMPARTMENT-COMPUTE-KEY: 
       name: gdad_poc_compartment_compute_hs_cotud
       description: gdad compute resources
-      matching_rule: ANY {resource.compartment.name = 'gdad_poc_compute'}
+      matching_rule: ANY {resource.compartment.name = 'gdad_poc_compute_hs_cotud'}
     GDAD-POC-CERTIFICATE-AUTHORITY-GROUP-KEY: 
       name: gdad_poc_certificate_authority_group_hs_cotud
       description: Certificate Authority Dynamic Groups
-      matching_rule: ALL {resource.type='certificateauthority', resource.compartment.name='gdad_poc_certs_vaults_keys'}
+      matching_rule: ALL {resource.type='certificateauthority', resource.compartment.name='gdad_poc_certs_vaults_keys_hs_cotud'}
 policies_configuration:
   enable_cis_benchmark_checks: 'false'
   supplied_policies:
@@ -113,28 +113,28 @@ policies_configuration:
       description: PoC View Vault Policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
     GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-exadata-compartment-access-vault-and-keys
       description: poc exadata vaults and keys policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - allow dynamic-group gdad_poc_cluster_compartment_resources_hs_cotud to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys 
-      - allow dynamic-group gdad_poc_cluster_compartment_resources_hs_cotud to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - allow dynamic-group gdad_poc_cluster_compartment_resources_hs_cotud to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud 
+      - allow dynamic-group gdad_poc_cluster_compartment_resources_hs_cotud to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
     GDAD-POC-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-access-vault-and-keys
       description: PoC General vaults and keys policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - Allow dynamic-group gdad_poc_certificate_authority_group_hs_cotud to use keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow dynamic-group gdad_poc_certificate_authority_group_hs_cotud to use keys in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
       - Allow dynamic-group gdad_poc_certificate_authority_group_hs_cotud to manage objects in compartment gdad_poc
     GDAD-POC-CERTIFICATE-ADMIN-KEY:  
       name: gdad-poc-certificate-admin
       description: Allow certificate admin to manage certificate-authority-family
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - Allow group CertificateAuthorityAdmins-hs-cotud to manage certificate-authority-family in compartment gdad_poc:gdad_poc_certs_vaults_keys
-      - Allow group CertificateAuthorityAdmins-hs-cotud to read keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
-      - Allow group CertificateAuthorityAdmins-hs-cotud to use key-delegate in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins-hs-cotud to manage certificate-authority-family in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
+      - Allow group CertificateAuthorityAdmins-hs-cotud to read keys in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
+      - Allow group CertificateAuthorityAdmins-hs-cotud to use key-delegate in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
       - Allow group CertificateAuthorityAdmins-hs-cotud to read buckets in compartment gdad_poc
-      - Allow group CertificateAuthorityAdmins-hs-cotud to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins-hs-cotud to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
