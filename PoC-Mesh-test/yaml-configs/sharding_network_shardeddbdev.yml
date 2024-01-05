@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Thu Jan 04 2024                                                                          #
+# Last Modified: Fri Jan 05 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 ---
@@ -33,7 +33,7 @@ network_configuration:
                   display_name: rpc-vcn-gdad-iad-vcn-gdad-fra
                 RPC-VCN-GDAD-IAD-VCN-GDAD-AMS-KEY:
                   display_name: rpc-vcn-gdad-iad-vcn-gdad-ams
-                  peer_id: ocid1.remotepeeringconnection.oc1.eu-amsterdam-1.aaaaaaaapmg7gacimquyrqbd3vt4s7nc3tred4h2ogx5bsiyesxmbkh74ajq
+                  #peer_id: ocid1.remotepeeringconnection.oc1.eu-amsterdam-1.aaaaaaaapmg7gacimquyrqbd3vt4s7nc3tred4h2ogx5bsiyesxmbkh74ajq
                   peer_region_name: eu-amsterdam-1
                 # For each new region add here a corresponding RPC
               drg_route_tables:
@@ -159,7 +159,7 @@ network_configuration:
               remote_peering_connections:
                 RPC-VCN-GDAD-FRA-VCN-GDAD-IAD-KEY:
                   display_name: rpc-vcn-gdad-fra-vcn-gdad-iad
-                  peer_id: ocid1.remotepeeringconnection.oc1.iad.aaaaaaaaouif6btc66kdzsxoahcqj5rro6qpp5do24o3y33vptfcssinayvq
+                  #peer_id: ocid1.remotepeeringconnection.oc1.iad.aaaaaaaaouif6btc66kdzsxoahcqj5rro6qpp5do24o3y33vptfcssinayvq
                   peer_region_name: us-ashburn-1
                 RPC-VCN-GDAD-FRA-VCN-GDAD-AMS-KEY:
                   display_name: rpc-vcn-gdad-fra-vcn-gdad-ams
@@ -304,7 +304,7 @@ network_configuration:
                   peer_region_name: us-ashburn-1
                 RPC-VCN-GDAD-AMS-VCN-GDAD-FRA-KEY:
                   display_name: rpc-vcn-gdad-ams-vcn-gdad-fra
-                  peer_id: ocid1.remotepeeringconnection.oc1.eu-frankfurt-1.aaaaaaaadutl6etdsfk4p4fduh7fgy7pmnppsl5oa5nnl3i4e4oeginhnt7q
+                  #peer_id: ocid1.remotepeeringconnection.oc1.eu-frankfurt-1.aaaaaaaadutl6etdsfk4p4fduh7fgy7pmnppsl5oa5nnl3i4e4oeginhnt7q
                   peer_region_name: eu-frankfurt-1
               drg_route_tables:
                 DRG-RT-VCN-GDAD-AMS-TO-ALL-REG-VCNS-KEY:

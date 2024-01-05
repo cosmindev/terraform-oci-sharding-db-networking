@@ -22,7 +22,7 @@ compartments_configuration:
         oci-open-lz-cmp: DB Sharding PoC Parent
       children: 
         GDAD-POC-NETWORKS-KEY:
-          name: gdad_poc_networks_mesh_cotud
+          name: gdad_poc_networks_mesh_ts
           description: Contains VNC, Subnets, Routing Rules, Sec Lists, DRGs, Service Gateways, External Bastion
           defined_tags:
           freeform_tags:
@@ -30,7 +30,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Networking
         GDAD-POC-EXADATA-KEY:
-          name: gdad_poc_exadata_mesh_cotud
+          name: gdad_poc_exadata_mesh_ts
           description: Dedicated Exadata
           defined_tags:
           freeform_tags:
@@ -38,7 +38,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Exadata
         GDAD-POC-CLUSTERS-KEY:
-          name: gdad_poc_clusters_mesh_cotud
+          name: gdad_poc_clusters_mesh_ts
           description: Cloud Autonomous VM clusters
           defined_tags:
           freeform_tags:
@@ -46,7 +46,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Clusters
         GDAD-POC-DATABASES-KEY:
-          name: gdad_poc_databases_mesh_cotud
+          name: gdad_poc_databases_mesh_ts
           description: Autonomous Databases and Autonomous Container Databases
           defined_tags:
           freeform_tags:
@@ -54,7 +54,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Databases
         GDAD-POC-COMPUTE-KEY:
-          name: gdad_poc_compute_mesh_cotud
+          name: gdad_poc_compute_mesh_ts
           description: Compute Instances
           defined_tags:
           freeform_tags:
@@ -62,7 +62,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Compute
         GDAD-POC-CERT-VAULT-KEYS-KEY:
-          name: gdad_poc_certs_vaults_keys_mesh_cotud
+          name: gdad_poc_certs_vaults_keys_mesh_ts
           description: Certificate Authorities, Certificate Bundles, Certificates, Vaults, and Keys
           defined_tags:
           freeform_tags:
@@ -77,7 +77,7 @@ groups_configuration:
     oci-open-lz-cmp: DB Sharding Groups
   groups:
     CERTIFICATE-AUTHORITY-ADMINS-KEY:
-      name: CertificateAuthorityAdmins-mesh-cotud
+      name: CertificateAuthorityAdmins-mesh-ts
       description: Purpose of this group is to manage certificate-authority-family
 dynamic_groups_configuration:
   default_defined_tags:
@@ -87,54 +87,54 @@ dynamic_groups_configuration:
     oci-open-lz-cmp: DB Sharding Dynamic Groups
   dynamic_groups:
     GDAD-POC-CLUSTER-COMPARTMENT-RESOURCES-KEY: 
-      name: gdad_poc_cluster_compartment_resources_mesh_cotud
+      name: gdad_poc_cluster_compartment_resources_mesh_ts
       description: autonomous VM cluster compartment resources
       matching_rule: ANY {resource.compartment.name = 'gdad_poc_clusters'}
     GDAD-POC-COMPARTMENT-COMPUTE-KEY: 
-      name: gdad_poc_compartment_compute_mesh_cotud
+      name: gdad_poc_compartment_compute_mesh_ts
       description: gdad compute resources
       matching_rule: ANY {resource.compartment.name = 'gdad_poc_compute'}
     GDAD-POC-CERTIFICATE-AUTHORITY-GROUP-KEY: 
-      name: gdad_poc_certificate_authority_group_mesh_cotud
+      name: gdad_poc_certificate_authority_group_mesh_ts
       description: Certificate Authority Dynamic Groups
       matching_rule: ALL {resource.type='certificateauthority', resource.compartment.name='gdad_poc_certs_vaults_keys'}
 policies_configuration:
   enable_cis_benchmark_checks: 'false'
   supplied_policies:
     CERTIFICATE-AUTHORITY-POLICY-KEY:  
-      name: CertificateAuthority-Policy-mesh-cotud
+      name: CertificateAuthority-Policy-mesh-ts
       description: Allow certificate authorities to use keys in this compartment gdad_poc
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - allow dynamic-group gdad_poc_certificate_authority_group_mesh_cotud to use keys in compartment gdad_poc
+      - allow dynamic-group gdad_poc_certificate_authority_group_mesh_ts to use keys in compartment gdad_poc
       - allow dynamic-group gdad-poc-certificate-authority-group to manage objects in compartment gdad_poc
     GDAD-POC-VIEW-VAULT-KEY:  
-      name: gdad-poc-view-vault-mesh-cotud
+      name: gdad-poc-view-vault-mesh-ts
       description: PoC View Vault Policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
       - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
-      name: gdad-poc-exadata-compartment-access-vault-and-keys-mesh-cotud
+      name: gdad-poc-exadata-compartment-access-vault-and-keys-mesh-ts
       description: poc exadata vaults and keys policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - allow dynamic-group gdad_poc_cluster_compartment_resources_mesh_cotud to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys 
-      - allow dynamic-group gdad_poc_cluster_compartment_resources_mesh_cotud to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - allow dynamic-group gdad_poc_cluster_compartment_resources_mesh_ts to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys 
+      - allow dynamic-group gdad_poc_cluster_compartment_resources_mesh_ts to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-ACCESS-VAULT-AND-KEYS-KEY:  
-      name: gdad-poc-access-vault-and-keys-mesh-cotud
+      name: gdad-poc-access-vault-and-keys-mesh-ts
       description: PoC General vaults and keys policies
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - Allow dynamic-group gdad_poc_certificate_authority_group_mesh_cotud to use keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
-      - Allow dynamic-group gdad_poc_certificate_authority_group_mesh_cotud to manage objects in compartment gdad_poc
+      - Allow dynamic-group gdad_poc_certificate_authority_group_mesh_ts to use keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow dynamic-group gdad_poc_certificate_authority_group_mesh_ts to manage objects in compartment gdad_poc
     GDAD-POC-CERTIFICATE-ADMIN-KEY:  
-      name: gdad-poc-certificate-admin-mesh-cotud
+      name: gdad-poc-certificate-admin-mesh-ts
       description: Allow certificate admin to manage certificate-authority-family
       compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
       statements:
-      - Allow group CertificateAuthorityAdmins-mesh-cotud to manage certificate-authority-family in compartment gdad_poc:gdad_poc_certs_vaults_keys
-      - Allow group CertificateAuthorityAdmins-mesh-cotud to read keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
-      - Allow group CertificateAuthorityAdmins-mesh-cotud to use key-delegate in compartment gdad_poc:gdad_poc_certs_vaults_keys
-      - Allow group CertificateAuthorityAdmins-mesh-cotud to read buckets in compartment gdad_poc
-      - Allow group CertificateAuthorityAdmins-mesh-cotud to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins-mesh-ts to manage certificate-authority-family in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins-mesh-ts to read keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins-mesh-ts to use key-delegate in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins-mesh-ts to read buckets in compartment gdad_poc
+      - Allow group CertificateAuthorityAdmins-mesh-ts to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
