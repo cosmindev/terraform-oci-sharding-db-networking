@@ -1,0 +1,71 @@
+# ####################################################################################################### #
+# Copyright (c) 2023 Oracle and/or its affiliates,  All rights reserved.                                  #
+# Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
+# Author: Cosmin Tudor                                                                                    #
+# Author email: cosmin.tudor@oracle.com                                                                   #
+# Last Modified: Thu Dec 21 2023                                                                          #
+# Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
+# ####################################################################################################### #
+
+---
+compartments_configuration:
+  enable_delete: 'false'
+  default_parent_id: PARENT-COMPARTMENT-FROM-ORM-KEY
+  compartments:
+    GDAD-POC-MESH-KEY:
+      name: gdad_poc_mesh
+      description: Contains Policies and all the other sharding compartments
+      defined_tags:
+      freeform_tags:
+        oci-open-lz: oci-sharding
+        oci-open-lz-customer: oci-sharding-poc
+        oci-open-lz-cmp: DB Sharding PoC Parent
+      children: 
+        GDAD-POC-NETWORKS-KEY:
+          name: gdad_poc_networks
+          description: Contains VNC, Subnets, Routing Rules, Sec Lists, DRGs, Service Gateways, External Bastion
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Networking
+        GDAD-POC-EXADATA-KEY:
+          name: gdad_poc_exadata
+          description: Dedicated Exadata
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Exadata
+        GDAD-POC-CLUSTERS-KEY:
+          name: gdad_poc_clusters
+          description: Cloud Autonomous VM clusters
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Clusters
+        GDAD-POC-DATABASES-KEY:
+          name: gdad_poc_databases
+          description: Autonomous Databases and Autonomous Container Databases
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Databases
+        GDAD-POC-COMPUTE-KEY:
+          name: gdad_poc_compute
+          description: Compute Instances
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Compute
+        GDAD-POC-CERT-VAULT-KEYS-KEY:
+          name: gdad_poc_certs_vaults_keys
+          description: Certificate Authorities, Certificate Bundles, Certificates, Vaults, and Keys
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Compute
