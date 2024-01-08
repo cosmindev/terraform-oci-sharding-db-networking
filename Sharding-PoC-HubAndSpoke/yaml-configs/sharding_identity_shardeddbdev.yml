@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Fri Jan 05 2024                                                                          #
+# Last Modified: Mon Jan 08 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -22,7 +22,7 @@ compartments_configuration:
         oci-open-lz-cmp: DB Sharding PoC Parent
       children: 
         GDAD-POC-NETWORKS-KEY:
-          name: gdad_poc_networks_hs_cotud
+          name: gdad_poc_networks
           description: Contains VNC, Subnets, Routing Rules, Sec Lists, DRGs, Service Gateways, External Bastion
           defined_tags:
           freeform_tags:
@@ -30,7 +30,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Networking
         GDAD-POC-EXADATA-KEY:
-          name: gdad_poc_exadata_hs_cotud
+          name: gdad_poc_exadata
           description: Dedicated Exadata
           defined_tags:
           freeform_tags:
@@ -38,7 +38,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Exadata
         GDAD-POC-CLUSTERS-KEY:
-          name: gdad_poc_clusters_hs_cotud
+          name: gdad_poc_clusters
           description: Cloud Autonomous VM clusters
           defined_tags:
           freeform_tags:
@@ -46,7 +46,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Clusters
         GDAD-POC-DATABASES-KEY:
-          name: gdad_poc_databases_hs_cotud
+          name: gdad_poc_databases
           description: Autonomous Databases and Autonomous Container Databases
           defined_tags:
           freeform_tags:
@@ -54,7 +54,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Databases
         GDAD-POC-COMPUTE-KEY:
-          name: gdad_poc_compute_hs_cotud
+          name: gdad_poc_compute
           description: Compute Instances
           defined_tags:
           freeform_tags:
@@ -62,7 +62,7 @@ compartments_configuration:
             oci-open-lz-customer: oci-sharding-poc
             oci-open-lz-cmp: DB Sharding Poc Compute
         GDAD-POC-CERT-VAULT-KEYS-KEY:
-          name: gdad_poc_certs_vaults_keys_hs_cotud
+          name: gdad_poc_certs_vaults_keys
           description: Certificate Authorities, Certificate Bundles, Certificates, Vaults, and Keys
           defined_tags:
           freeform_tags:
@@ -77,7 +77,7 @@ groups_configuration:
     oci-open-lz-cmp: DB Sharding Groups
   groups:
     CERTIFICATE-AUTHORITY-ADMINS-KEY:
-      name: CertificateAuthorityAdmins-hs-cotud
+      name: CertificateAuthorityAdmins
       description: Purpose of this group is to manage certificate-authority-family
 dynamic_groups_configuration:
   default_defined_tags:
@@ -87,54 +87,54 @@ dynamic_groups_configuration:
     oci-open-lz-cmp: DB Sharding Dynamic Groups
   dynamic_groups:
     GDAD-POC-CLUSTER-COMPARTMENT-RESOURCES-KEY: 
-      name: gdad_poc_cluster_compartment_resources_hs_cotud
+      name: gdad_poc_cluster_compartment_resources
       description: autonomous VM cluster compartment resources
-      matching_rule: ANY {resource.compartment.name = 'gdad_poc_clusters_hs_cotud'}
+      matching_rule: ANY {resource.compartment.name = 'gdad_poc_clusters'}
     GDAD-POC-COMPARTMENT-COMPUTE-KEY: 
-      name: gdad_poc_compartment_compute_hs_cotud
+      name: gdad_poc_compartment_compute
       description: gdad compute resources
-      matching_rule: ANY {resource.compartment.name = 'gdad_poc_compute_hs_cotud'}
+      matching_rule: ANY {resource.compartment.name = 'gdad_poc_compute'}
     GDAD-POC-CERTIFICATE-AUTHORITY-GROUP-KEY: 
-      name: gdad_poc_certificate_authority_group_hs_cotud
+      name: gdad_poc_certificate_authority_group
       description: Certificate Authority Dynamic Groups
-      matching_rule: ALL {resource.type='certificateauthority', resource.compartment.name='gdad_poc_certs_vaults_keys_hs_cotud'}
+      matching_rule: ALL {resource.type='certificateauthority', resource.compartment.name='gdad_poc_certs_vaults_keys'}
 policies_configuration:
   enable_cis_benchmark_checks: 'false'
   supplied_policies:
     CERTIFICATE-AUTHORITY-POLICY-KEY:  
       name: CertificateAuthority-Policy
       description: Allow certificate authorities to use keys in this compartment gdad_poc
-      compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
+      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
       statements:
-      - allow dynamic-group gdad_poc_certificate_authority_group_hs_cotud to use keys in compartment gdad_poc
+      - allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc
       - allow dynamic-group gdad-poc-certificate-authority-group to manage objects in compartment gdad_poc
     GDAD-POC-VIEW-VAULT-KEY:  
       name: gdad-poc-view-vault
       description: PoC View Vault Policies
-      compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
+      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
       statements:
-      - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
+      - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-exadata-compartment-access-vault-and-keys
       description: poc exadata vaults and keys policies
-      compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
+      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
       statements:
-      - allow dynamic-group gdad_poc_cluster_compartment_resources_hs_cotud to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud 
-      - allow dynamic-group gdad_poc_cluster_compartment_resources_hs_cotud to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
+      - allow dynamic-group gdad_poc_cluster_compartment_resources to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys 
+      - allow dynamic-group gdad_poc_cluster_compartment_resources to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-access-vault-and-keys
       description: PoC General vaults and keys policies
-      compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
+      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
       statements:
-      - Allow dynamic-group gdad_poc_certificate_authority_group_hs_cotud to use keys in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
-      - Allow dynamic-group gdad_poc_certificate_authority_group_hs_cotud to manage objects in compartment gdad_poc
+      - Allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow dynamic-group gdad_poc_certificate_authority_group to manage objects in compartment gdad_poc
     GDAD-POC-CERTIFICATE-ADMIN-KEY:  
       name: gdad-poc-certificate-admin
       description: Allow certificate admin to manage certificate-authority-family
-      compartment_ocid: ocid1.compartment.oc1..aaaaaaaaj5g7v2ookfz2rkfaxsfdr2odmygwubwposcsnuu6pnnncv2i4vaa
+      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
       statements:
-      - Allow group CertificateAuthorityAdmins-hs-cotud to manage certificate-authority-family in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
-      - Allow group CertificateAuthorityAdmins-hs-cotud to read keys in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
-      - Allow group CertificateAuthorityAdmins-hs-cotud to use key-delegate in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
-      - Allow group CertificateAuthorityAdmins-hs-cotud to read buckets in compartment gdad_poc
-      - Allow group CertificateAuthorityAdmins-hs-cotud to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys_hs_cotud
+      - Allow group CertificateAuthorityAdmins to manage certificate-authority-family in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins to read keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins to use key-delegate in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins to read buckets in compartment gdad_poc
+      - Allow group CertificateAuthorityAdmins to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
