@@ -104,34 +104,34 @@ policies_configuration:
     CERTIFICATE-AUTHORITY-POLICY-KEY:  
       name: CertificateAuthority-Policy
       description: Allow certificate authorities to use keys in this compartment gdad_poc_mesh
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_ocid: ocid1.compartment.oc1..aaaaaaaapvysge46qd3b4qpek5tnhm23olu2phfwkb6u5rzxcdttidwl45fa
       statements:
       - allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc_mesh
       - allow dynamic-group gdad-poc-certificate-authority-group to manage objects in compartment gdad_poc_mesh
     GDAD-POC-VIEW-VAULT-KEY:  
       name: gdad-poc-view-vault
       description: PoC View Vault Policies
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_ocid: ocid1.compartment.oc1..aaaaaaaapvysge46qd3b4qpek5tnhm23olu2phfwkb6u5rzxcdttidwl45fa
       statements:
       - allow service keymanagementservice to manage vaults in compartment gdad_poc_mesh:gdad_poc_certs_vaults_keys
     GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-exadata-compartment-access-vault-and-keys
       description: poc exadata vaults and keys policies
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_ocid: ocid1.compartment.oc1..aaaaaaaapvysge46qd3b4qpek5tnhm23olu2phfwkb6u5rzxcdttidwl45fa
       statements:
       - allow dynamic-group gdad_poc_cluster_compartment_resources to manage keys in compartment gdad_poc_mesh:gdad_poc_certs_vaults_keys 
       - allow dynamic-group gdad_poc_cluster_compartment_resources to read vaults in compartment gdad_poc_mesh:gdad_poc_certs_vaults_keys
     GDAD-POC-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-access-vault-and-keys
       description: PoC General vaults and keys policies
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_ocid: ocid1.compartment.oc1..aaaaaaaapvysge46qd3b4qpek5tnhm23olu2phfwkb6u5rzxcdttidwl45fa
       statements:
       - Allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc_mesh:gdad_poc_certs_vaults_keys
       - Allow dynamic-group gdad_poc_certificate_authority_group to manage objects in compartment gdad_poc_mesh
     GDAD-POC-CERTIFICATE-ADMIN-KEY:  
       name: gdad-poc-certificate-admin
       description: Allow certificate admin to manage certificate-authority-family
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_ocid: ocid1.compartment.oc1..aaaaaaaapvysge46qd3b4qpek5tnhm23olu2phfwkb6u5rzxcdttidwl45fa
       statements:
       - Allow group CertificateAuthorityAdmins to manage certificate-authority-family in compartment gdad_poc_mesh:gdad_poc_certs_vaults_keys
       - Allow group CertificateAuthorityAdmins to read keys in compartment gdad_poc_mesh:gdad_poc_certs_vaults_keys
