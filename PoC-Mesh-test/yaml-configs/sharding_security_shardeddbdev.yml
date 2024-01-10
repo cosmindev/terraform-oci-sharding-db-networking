@@ -3,26 +3,34 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Fri Jan 05 2024                                                                          #
+# Last Modified: Wed Jan 10 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
----
-vaults_configuration:
-  us-ashburn-1:
-    default_compartment_id: GDAD-POC-CERT-VAULT-KEYS-KEY
-    keys:
-      GDAD-POC-CA-KEY-PHX-KEY:
-        algorithm: RSA
-        length: 512
-        name: gdad_poc_ca_key_phx
-        protection_mode: HSM
-        vault_key: GDAD-POC-VAULT-KEY
-      GDAD-POC-TDE-KEY-ORASPACE-KEY:
-        algorithm: AES
-        name: gdad_poc_TDE_key-oraspace
-        protection_mode: SOFTWARE
-        vault_key: GDAD-POC-VAULT-KEY
-    vaults:
-      GDAD-POC-VAULT-KEY:
-        name: gdad_poc_vault
+{
+  "vaults_configuration": {
+    "us-ashburn-1": {
+      "default_compartment_id": "GDAD-POC-CERT-VAULT-KEYS-KEY",
+      "keys": {
+        "GDAD-POC-CA-KEY-PHX-KEY": {
+          "algorithm": "RSA",
+          "length": 512,
+          "name": "gdad_poc_ca_key_phx",
+          "protection_mode": "HSM",
+          "vault_key": "GDAD-POC-VAULT-KEY"
+        },
+        "GDAD-POC-TDE-KEY-ORASPACE-KEY": {
+          "algorithm": "AES",
+          "name": "gdad_poc_TDE_key-oraspace",
+          "protection_mode": "SOFTWARE",
+          "vault_key": "GDAD-POC-VAULT-KEY"
+        }
+      },
+      "vaults": {
+        "GDAD-POC-VAULT-KEY": {
+          "name": "gdad_poc_vault"
+        }
+      }
+    }
+  }
+}

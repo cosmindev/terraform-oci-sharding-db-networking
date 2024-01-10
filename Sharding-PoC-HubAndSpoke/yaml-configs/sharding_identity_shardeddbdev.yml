@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Mon Jan 08 2024                                                                          #
+# Last Modified: Wed Jan 10 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -104,34 +104,34 @@ policies_configuration:
     CERTIFICATE-AUTHORITY-POLICY-KEY:  
       name: CertificateAuthority-Policy
       description: Allow certificate authorities to use keys in this compartment gdad_poc
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_id: GDAD-POC-KEY
       statements:
       - allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc
       - allow dynamic-group gdad-poc-certificate-authority-group to manage objects in compartment gdad_poc
     GDAD-POC-VIEW-VAULT-KEY:  
       name: gdad-poc-view-vault
       description: PoC View Vault Policies
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_id: GDAD-POC-KEY
       statements:
       - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-exadata-compartment-access-vault-and-keys
       description: poc exadata vaults and keys policies
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_id: GDAD-POC-KEY
       statements:
       - allow dynamic-group gdad_poc_cluster_compartment_resources to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys 
       - allow dynamic-group gdad_poc_cluster_compartment_resources to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
     GDAD-POC-ACCESS-VAULT-AND-KEYS-KEY:  
       name: gdad-poc-access-vault-and-keys
       description: PoC General vaults and keys policies
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_id: GDAD-POC-KEY
       statements:
       - Allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
       - Allow dynamic-group gdad_poc_certificate_authority_group to manage objects in compartment gdad_poc
     GDAD-POC-CERTIFICATE-ADMIN-KEY:  
       name: gdad-poc-certificate-admin
       description: Allow certificate admin to manage certificate-authority-family
-      compartment_ocid: ocid1.tenancy.oc1..aaaaaaaalfdcq4pjudpqet6h7hdwontdpij5qzeec5nag236it6x6arg7rsq
+      compartment_id: GDAD-POC-KEY
       statements:
       - Allow group CertificateAuthorityAdmins to manage certificate-authority-family in compartment gdad_poc:gdad_poc_certs_vaults_keys
       - Allow group CertificateAuthorityAdmins to read keys in compartment gdad_poc:gdad_poc_certs_vaults_keys

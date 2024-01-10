@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Mon Dec 18 2023                                                                          #
+# Last Modified: Wed Jan 10 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 
@@ -12,29 +12,129 @@ compartments_configuration:
   enable_delete: 'false'
   default_parent_id: PARENT-COMPARTMENT-FROM-ORM-KEY
   compartments:
-    CMP-SHARDING-KEY:
-      name: cmp-sharding
-      description: OCI Sharding Compartment
+    GDAD-POC-KEY:
+      name: gdad_poc
+      description: Contains Policies and all the other sharding compartments
       defined_tags:
       freeform_tags:
         oci-open-lz: oci-sharding
-        oci-open-lz-customer: oci-sharding-customer
-        oci-open-lz-cmp: DB Sharding
+        oci-open-lz-customer: oci-sharding-poc
+        oci-open-lz-cmp: DB Sharding PoC Parent
+      children: 
+        GDAD-POC-NETWORKS-KEY:
+          name: gdad_poc_networks
+          description: Contains VNC, Subnets, Routing Rules, Sec Lists, DRGs, Service Gateways, External Bastion
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Networking
+        GDAD-POC-EXADATA-KEY:
+          name: gdad_poc_exadata
+          description: Dedicated Exadata
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Exadata
+        GDAD-POC-CLUSTERS-KEY:
+          name: gdad_poc_clusters
+          description: Cloud Autonomous VM clusters
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Clusters
+        GDAD-POC-DATABASES-KEY:
+          name: gdad_poc_databases
+          description: Autonomous Databases and Autonomous Container Databases
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Databases
+        GDAD-POC-COMPUTE-KEY:
+          name: gdad_poc_compute
+          description: Compute Instances
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Compute
+        GDAD-POC-CERT-VAULT-KEYS-KEY:
+          name: gdad_poc_certs_vaults_keys
+          description: Certificate Authorities, Certificate Bundles, Certificates, Vaults, and Keys
+          defined_tags:
+          freeform_tags:
+            oci-open-lz: oci-sharding
+            oci-open-lz-customer: oci-sharding-poc
+            oci-open-lz-cmp: DB Sharding Poc Compute
 groups_configuration:
   default_defined_tags:
   default_freeform_tags:
+    oci-open-lz: oci-sharding
+    oci-open-lz-customer: oci-sharding-poc
+    oci-open-lz-cmp: DB Sharding Groups
   groups:
-    GRP-SHARDING-ADMINS-KEY:
-      name: grp-sharding-admins
-      description: Sharding Admins
+    CERTIFICATE-AUTHORITY-ADMINS-KEY:
+      name: CertificateAuthorityAdmins
+      description: Purpose of this group is to manage certificate-authority-family
 dynamic_groups_configuration:
+  default_defined_tags:
+  default_freeform_tags:
+    oci-open-lz: oci-sharding
+    oci-open-lz-customer: oci-sharding-poc
+    oci-open-lz-cmp: DB Sharding Dynamic Groups
+  dynamic_groups:
+    GDAD-POC-CLUSTER-COMPARTMENT-RESOURCES-KEY: 
+      name: gdad_poc_cluster_compartment_resources
+      description: autonomous VM cluster compartment resources
+      matching_rule: ANY {resource.compartment.name = 'gdad_poc_clusters'}
+    GDAD-POC-COMPARTMENT-COMPUTE-KEY: 
+      name: gdad_poc_compartment_compute
+      description: gdad compute resources
+      matching_rule: ANY {resource.compartment.name = 'gdad_poc_compute'}
+    GDAD-POC-CERTIFICATE-AUTHORITY-GROUP-KEY: 
+      name: gdad_poc_certificate_authority_group
+      description: Certificate Authority Dynamic Groups
+      matching_rule: ALL {resource.type='certificateauthority', resource.compartment.name='gdad_poc_certs_vaults_keys'}
 policies_configuration:
   enable_cis_benchmark_checks: 'false'
   supplied_policies:
-    SHARDING-NETWORK-ADMINISTRATION:
-      name: sharding-network-administration
-      description: Sharding Network Policies
-      compartment_ocid: ocid1.compartment.oc1..aaaaaaaalu3dpja5enhyfe6ls4s3n2kw2ooatry2lv32y6ea7ds2ducspkda
+    CERTIFICATE-AUTHORITY-POLICY-KEY:  
+      name: CertificateAuthority-Policy
+      description: Allow certificate authorities to use keys in this compartment gdad_poc
+      compartment_id: GDAD-POC-KEY
       statements:
-      - allow group grp-sharding-admins to manage virtual-network-family in compartment
-        cmp-sharding
+      - allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc
+      - allow dynamic-group gdad-poc-certificate-authority-group to manage objects in compartment gdad_poc
+    GDAD-POC-VIEW-VAULT-KEY:  
+      name: gdad-poc-view-vault
+      description: PoC View Vault Policies
+      compartment_id: GDAD-POC-KEY
+      statements:
+      - allow service keymanagementservice to manage vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
+    GDAD-POC-EXADATA-COMPARTMENT-ACCESS-VAULT-AND-KEYS-KEY:  
+      name: gdad-poc-exadata-compartment-access-vault-and-keys
+      description: poc exadata vaults and keys policies
+      compartment_id: GDAD-POC-KEY
+      statements:
+      - allow dynamic-group gdad_poc_cluster_compartment_resources to manage keys in compartment gdad_poc:gdad_poc_certs_vaults_keys 
+      - allow dynamic-group gdad_poc_cluster_compartment_resources to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
+    GDAD-POC-ACCESS-VAULT-AND-KEYS-KEY:  
+      name: gdad-poc-access-vault-and-keys
+      description: PoC General vaults and keys policies
+      compartment_id: GDAD-POC-KEY
+      statements:
+      - Allow dynamic-group gdad_poc_certificate_authority_group to use keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow dynamic-group gdad_poc_certificate_authority_group to manage objects in compartment gdad_poc
+    GDAD-POC-CERTIFICATE-ADMIN-KEY:  
+      name: gdad-poc-certificate-admin
+      description: Allow certificate admin to manage certificate-authority-family
+      compartment_id: GDAD-POC-KEY
+      statements:
+      - Allow group CertificateAuthorityAdmins to manage certificate-authority-family in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins to read keys in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins to use key-delegate in compartment gdad_poc:gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins to read buckets in compartment gdad_poc
+      - Allow group CertificateAuthorityAdmins to read vaults in compartment gdad_poc:gdad_poc_certs_vaults_keys
