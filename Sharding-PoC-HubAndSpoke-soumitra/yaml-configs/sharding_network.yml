@@ -148,6 +148,17 @@ network_configuration:
                 route_table_key: VCN-GDAD-IAD-RT-KEY
                 security_list_keys:
                 - GDAD-SECLIST-IAD-KEY
+              OSD-GSM-TEST-SUBNET-IAD-KEY:
+                cidr_block: 10.1.1.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: osd-gsm-iad-test-subnet
+                dns_label: test
+                ipv6cidr_blocks: [ ]
+                prohibit_internet_ingress: false
+                prohibit_public_ip_on_vnic: false
+                route_table_key: VCN-GDAD-IAD-RT-KEY
+                security_list_keys:
+                  - GDAD-SECLIST-IAD-KEY
             vcn_specific_gateways:
               internet_gateways:
                 IGW-GDAD-IAD-KEY:
