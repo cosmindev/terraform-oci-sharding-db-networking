@@ -1,0 +1,436 @@
+# ####################################################################################################### #
+# Copyright (c) 2023 Oracle and/or its affiliates,  All rights reserved.                                  #
+# Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
+# Author: Cosmin Tudor                                                                                    #
+# Author email: cosmin.tudor@oracle.com                                                                   #
+# Last Modified: Thu Jan 04 2024                                                                          #
+# Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
+# ####################################################################################################### #
+---
+network_configuration:
+  us-ashburn-1:
+    depends_on_regions:
+    default_compartment_id: GDAD-POC-NETWORKS-KEY
+    default_enable_cis_checks: false
+    default_freeform_tags:
+      customer-environment: sharding-poc-environment
+    network_configuration_categories:
+      SHARDING-POC-NETWORKING:
+        category_freeform_tags:
+          sharding-sub-environment: SHARDING-POC-NETWORKING
+        non_vcn_specific_gateways:
+          dynamic_routing_gateways:
+            GDAD-IAD-DRG-KEY:
+              display_name: gdad-iad-drg
+              drg_attachments:
+                DRG-GDAD-IAD-VCN-GDAD-IAD-ATTACH-KEY:
+                  display_name: drg-gdad-iad-vcn-dgad-iad-attach
+                  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
+                  network_details:
+                    attached_resource_key: GDADV10.0IAD-KEY
+                    type: VCN
+                DRG-GDAD-IAD-RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-ATTACH-KEY:
+                  display_name: drg-gdad-iad-rpc-vcn-gdad-iad-vcn-gdad-fra-attach
+                  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
+                  network_details:
+                    attached_resource_key: RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY
+                    type: REMOTE_PEERING_CONNECTION
+                DRG-GDAD-IAD-RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-ATTACH-KEY:
+                  display_name: drg-gdad-iad-rpc-vcn-gdad-iad-vcn-gdad-lhr-attach
+                  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
+                  network_details:
+                    attached_resource_key: RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-KEY
+                    type: REMOTE_PEERING_CONNECTION
+              remote_peering_connections:
+                RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY:
+                  display_name: rpc-vcn-gdad-iad-vcn-gdad-fra
+                RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-KEY:
+                  display_name: rpc-vcn-gdad-iad-vcn-gdad-lhr
+                # For each new region add here a corresponding RPC
+              drg_route_tables:
+                DRG-GDAD-RT-HUB-KEY:
+                  display_name: drg-gdad-rt-hub
+                  import_drg_route_distribution_key: IMPORT-GDAD-HUB-RTD-KEY
+                  is_ecmp_enabled: false
+                  route_rules: null
+              drg_route_distributions:
+                IMPORT-GDAD-HUB-RTD-KEY:
+                  display_name: import-gdad-hub-rtd
+                  distribution_type: IMPORT
+                  statements:
+                    ROUTE-TO-VCNS-KEY:
+                      action: ACCEPT
+                      match_criteria:
+                        attachment_type: VCN
+                        match_type: DRG_ATTACHMENT_TYPE
+                      priority: 10
+                    ROUTE-TO-RPCS-KEY:
+                      action: ACCEPT
+                      match_criteria:
+                        attachment_type: REMOTE_PEERING_CONNECTION
+                        match_type: DRG_ATTACHMENT_TYPE
+                      priority: 20
+        vcns:
+          GDADV10.0IAD-KEY:
+            block_nat_traffic: false
+            cidr_blocks:
+            - 10.1.0.0/16
+            security_lists:
+              GDAD-SECLIST-IAD-KEY:
+                display_name: gdad-seclist-iad
+                egress_rules:
+                - description: egress to 0.0.0.0/0 over ALL protocols
+                  dst: 0.0.0.0/0
+                  dst_type: CIDR_BLOCK
+                  protocol: ALL
+                  stateless: false
+                ingress_rules:
+                - description: ping from 0.0.0.0/0
+                  protocol: ICMP
+                  icmp_type: 8
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over HTTPS443
+                  dst_port_max: 443
+                  dst_port_min: 443
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over TCP22
+                  dst_port_max: 22
+                  dst_port_min: 22
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+            display_name: gdadv10.0IAD
+            dns_label: gdav100iad
+            is_attach_drg: false
+            is_create_igw: false
+            is_ipv6enabled: false
+            is_oracle_gua_allocation_enabled: false
+            route_tables:
+              VCN-GDAD-IAD-RT-KEY:
+                display_name: vcn-gdad-iad-rt
+                route_rules:
+                  TO-IGW-IAD-KEY:
+                    description: Default route table to IGW
+                    destination: 0.0.0.0/0
+                    destination_type: CIDR_BLOCK
+                    network_entity_key: IGW-GDAD-IAD-KEY
+                  TO-SGW-IAD-KEY:
+                    description: SGW route table to SGW
+                    destination: objectstorage
+                    destination_type: SERVICE_CIDR_BLOCK
+                    network_entity_key: SGW-GDAD-IAD-KEY
+                  TO-VCN-GDAD-FRA-KEY:
+                    description: Route for accessing VCN-GDAD-FRA in Frankfurt through the DRG RPC
+                    destination: 10.2.0.0/16
+                    destination_type: CIDR_BLOCK
+                    network_entity_key: GDAD-IAD-DRG-KEY
+                  TO-VCN-GDAD-LHR-KEY:
+                    description: Route for accessing VCN-GDAD-LHR in london through the DRG RPC
+                    destination: 10.3.0.0/16
+                    destination_type: CIDR_BLOCK
+                    network_entity_key: GDAD-IAD-DRG-KEY
+                  # For each new region add here a corresponding Route table route rule
+            subnets:
+              OSD-GSM-PROXY-SUBNET-IAD-KEY:
+                cidr_block: 10.1.0.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: osd-gsm-iad-proxy-subnet
+                dns_label: osdgsmiadpr
+                ipv6cidr_blocks: []
+                prohibit_internet_ingress: false
+                prohibit_public_ip_on_vnic: false
+                route_table_key: VCN-GDAD-IAD-RT-KEY
+                security_list_keys:
+                - GDAD-SECLIST-IAD-KEY
+            vcn_specific_gateways:
+              internet_gateways:
+                IGW-GDAD-IAD-KEY:
+                  display_name: igw-gdad-iad
+                  enabled: true
+              service_gateways:
+                SGW-GDAD-IAD-KEY:
+                  display_name: sgw-gdad-iad
+                  services: objectstorage
+  eu-frankfurt-1:
+    depends_on_regions:
+    - us-ashburn-1
+    default_compartment_id: GDAD-POC-NETWORKS-KEY
+    default_enable_cis_checks: false
+    default_freeform_tags:
+      customer-environment: sharding-poc-environment
+    network_configuration_categories:
+      SHARDING-POC-NETWORKING:
+        category_freeform_tags:
+          sharding-sub-environment: SHARDING-POC-NETWORKING
+        non_vcn_specific_gateways:
+          dynamic_routing_gateways:
+            GDAD-FRA-DRG-KEY:
+              display_name: gdad-fra-drg
+              drg_attachments:
+                DRG-GDAD-FRA-VCN-GDAD-FRA-ATTACH-KEY:
+                  display_name: drg-gdad-fra-vcn-dgad-fra-attach
+                  network_details:
+                    attached_resource_key: GDADV10.0FRA-KEY
+                    type: VCN
+              remote_peering_connections:
+                RPC-VCN-GDAD-FRA-VCN-GDAD-IAD-KEY:
+                  display_name: rpc-vcn-gdad-fra-vcn-gdad-iad
+                  peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY
+                  peer_region_name: us-ashburn-1
+        vcns:
+          GDADV10.0FRA-KEY:
+            block_nat_traffic: false
+            cidr_blocks:
+            - 10.2.0.0/16
+            security_lists:
+              GDAD-SECLIST-FRA-KEY:
+                display_name: gdad-seclist-fra
+                egress_rules:
+                - description: egress to 0.0.0.0/0 over TCP
+                  dst: 0.0.0.0/0
+                  dst_type: CIDR_BLOCK
+                  protocol: ALL
+                  stateless: false
+                ingress_rules:
+                - description: ping from 0.0.0.0/0
+                  protocol: ICMP
+                  icmp_type: 8
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over HTTPS443
+                  dst_port_max: 443
+                  dst_port_min: 443
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over TCP22
+                  dst_port_max: 22
+                  dst_port_min: 22
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+            display_name: gdadv10.0FRA
+            dns_label: gdav100fra
+            is_attach_drg: false
+            is_create_igw: false
+            is_ipv6enabled: false
+            is_oracle_gua_allocation_enabled: false
+            route_tables:
+              VCN-GDAD-FRA-RT-KEY:
+                display_name: vcn-gdad-fra-rt
+                route_rules:
+                  TO-SGW-FRA-KEY:
+                    description: SGW route table to SGW
+                    destination: all-services
+                    destination_type: SERVICE_CIDR_BLOCK
+                    network_entity_key: SGW-GDAD-FRA-KEY
+                  TO-VCN-GDAD-IAD-KEY:
+                    description: Route for accessing VCN-GDAD-IAD in Ashburn through the DRG RPC
+                    destination: 10.1.0.0/16
+                    destination_type: CIDR_BLOCK
+                    network_entity_key: GDAD-FRA-DRG-KEY
+                  TO-VCN-GDAD-LHR-KEY:
+                    description: Route for accessing VCN-GDAD-LHR in Ashburn through the DRG RPC
+                    destination: 10.3.0.0/16
+                    destination_type: CIDR_BLOCK
+                    network_entity_key: GDAD-FRA-DRG-KEY
+                  # For each new region add here a corresponding Route table route rule
+            subnets:
+              GDAD-GSM-FRA-KEY:
+                cidr_block: 10.2.10.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: gdad-gsm-fra
+                dns_label: gdadgsmfra
+                ipv6cidr_blocks: []
+                prohibit_internet_ingress: true
+                prohibit_public_ip_on_vnic: true
+                route_table_key: VCN-GDAD-FRA-RT-KEY
+                security_list_keys:
+                - GDAD-SECLIST-FRA-KEY
+              GDAD-DATABASE-FRA-KEY:
+                cidr_block: 10.2.20.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: gdad-database-fra
+                dns_label: gdaddbfra
+                ipv6cidr_blocks: []
+                prohibit_internet_ingress: true
+                prohibit_public_ip_on_vnic: true
+                route_table_key: VCN-GDAD-FRA-RT-KEY
+                security_list_keys:
+                - GDAD-SECLIST-FRA-KEY
+              GDAD-APPLICATION-FRA-KEY:
+                cidr_block: 10.2.30.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: gdad-application-fra
+                dns_label: gdadappfra
+                ipv6cidr_blocks: []
+                prohibit_internet_ingress: true
+                prohibit_public_ip_on_vnic: true
+                route_table_key: VCN-GDAD-FRA-RT-KEY
+                security_list_keys:
+                - GDAD-SECLIST-FRA-KEY
+            vcn_specific_gateways:
+              internet_gateways:
+              service_gateways:
+                SGW-GDAD-FRA-KEY:
+                  display_name: sgw-gdad-fra
+                  services: all-services
+  uk-london-1:
+    depends_on_regions:
+    - us-ashburn-1
+    default_compartment_id: GDAD-POC-NETWORKS-KEY
+    default_enable_cis_checks: false
+    default_freeform_tags:
+      customer-environment: sharding-poc-environment
+    network_configuration_categories:
+      SHARDING-POC-NETWORKING:
+        category_freeform_tags:
+          sharding-sub-environment: SHARDING-POC-NETWORKING
+        non_vcn_specific_gateways:
+          dynamic_routing_gateways:
+            GDAD-LHR-DRG-KEY:
+              display_name: gdad-lhr-drg
+              drg_attachments:
+                DRG-GDAD-LHR-VCN-GDAD-LHR-ATTACH-KEY:
+                  display_name: drg-gdad-lhr-vcn-dgad-lhr-attach
+                  network_details:
+                    attached_resource_key: GDADV10.0LHR-KEY
+                    type: VCN
+              remote_peering_connections:
+                RPC-VCN-GDAD-LHR-VCN-GDAD-IAD-KEY:
+                  display_name: rpc-vcn-gdad-lhr-vcn-gdad-iad
+                  peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-KEY
+                  peer_region_name: us-ashburn-1
+        vcns:
+          GDADV10.0LHR-KEY:
+            block_nat_traffic: false
+            cidr_blocks:
+            - 10.3.0.0/16
+            default_security_list:
+              egress_rules:
+              - description: egress to 0.0.0.0/0 over ALL protocols
+                dst: 0.0.0.0/0
+                dst_type: CIDR_BLOCK
+                protocol: ALL
+                stateless: false
+              ingress_rules:
+              - description: ingress from 0.0.0.0/0 over TCP22
+                dst_port_max: 22
+                dst_port_min: 22
+                protocol: TCP
+                src: 0.0.0.0/0
+                src_type: CIDR_BLOCK
+                stateless: false
+              - description: ingress from 0.0.0.0/0 over TCP443
+                dst_port_max: 443
+                dst_port_min: 443
+                protocol: TCP
+                src: 0.0.0.0/0
+                src_type: CIDR_BLOCK
+                stateless: false
+            security_lists:
+              GDAD-SECLIST-LHR-KEY:
+                display_name: gdad-seclist-lhr
+                egress_rules:
+                - description: egress to 0.0.0.0/0 over TCP
+                  dst: 0.0.0.0/0
+                  dst_type: CIDR_BLOCK
+                  protocol: ALL
+                  stateless: false
+                ingress_rules:
+                - description: ping from 0.0.0.0/0
+                  protocol: ICMP
+                  icmp_type: 8
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over HTTPS443
+                  dst_port_max: 443
+                  dst_port_min: 443
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+                - description: ingress from 0.0.0.0/0 over TCP22
+                  dst_port_max: 22
+                  dst_port_min: 22
+                  protocol: TCP
+                  src: 0.0.0.0/0
+                  src_type: CIDR_BLOCK
+                  stateless: false
+            display_name: gdadv10.0LHR
+            dns_label: gdav100lhr
+            is_attach_drg: false
+            is_create_igw: false
+            is_ipv6enabled: false
+            is_oracle_gua_allocation_enabled: false
+            route_tables:
+              VCN-GDAD-LHR-RT-KEY:
+                display_name: vcn-gdad-lhr-rt
+                route_rules:
+                  TO-SGW-LHR-KEY:
+                    description: SGW route table to SGW
+                    destination: all-services
+                    destination_type: SERVICE_CIDR_BLOCK
+                    network_entity_key: SGW-GDAD-LHR-KEY
+                  TO-VCN-GDAD-IAD-KEY:
+                    description: Route for accessing VCN-GDAD-IAD in Ashburn through the DRG RPC
+                    destination: 10.1.0.0/16
+                    destination_type: CIDR_BLOCK
+                    network_entity_key: GDAD-LHR-DRG-KEY
+                  TO-VCN-GDAD-LHR-KEY:
+                    description: Route for accessing VCN-GDAD-FRA in Frankfurt through the DRG RPC
+                    destination: 10.2.0.0/16
+                    destination_type: CIDR_BLOCK
+                    network_entity_key: GDAD-LHR-DRG-KEY
+                  # For each new region add here a corresponding Route table route rule
+            subnets:
+              GDAD-GSM-LHR-KEY:
+                cidr_block: 10.3.10.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: gdad-gsm-lhr
+                dns_label: gdadgsmlhr
+                ipv6cidr_blocks: []
+                prohibit_internet_ingress: true
+                prohibit_public_ip_on_vnic: true
+                route_table_key: VCN-GDAD-LHR-RT-KEY
+                security_list_keys:
+                - GDAD-SECLIST-LHR-KEY
+              GDAD-DATABASE-LHR-KEY:
+                cidr_block: 10.3.20.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: gdad-database-lhr
+                dns_label: gdaddblhr
+                ipv6cidr_blocks: []
+                prohibit_internet_ingress: true
+                prohibit_public_ip_on_vnic: true
+                route_table_key: VCN-GDAD-LHR-RT-KEY
+                security_list_keys:
+                - default_security_list
+              GDAD-APPLICATION-LHR-KEY:
+                cidr_block: 10.3.30.0/24
+                dhcp_options_key: default_dhcp_options
+                display_name: gdad-application-lhr
+                dns_label: gdadapplhr
+                ipv6cidr_blocks: []
+                prohibit_internet_ingress: true
+                prohibit_public_ip_on_vnic: true
+                route_table_key: VCN-GDAD-LHR-RT-KEY
+                security_list_keys:
+                - GDAD-SECLIST-LHR-KEY
+            vcn_specific_gateways:
+              internet_gateways:
+              service_gateways:
+                SGW-GDAD-LHR-KEY:
+                  display_name: sgw-gdad-lhr
+                  services: all-services
+# For each new region add here a new network configuration for that region
