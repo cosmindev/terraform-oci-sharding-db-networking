@@ -354,9 +354,7 @@ network_configuration:
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
                   stateless: false
-                - description: ingress from 0.0.0.0/0 over TCP22
-                  dst_port_max: 22
-                  dst_port_min: 22
+                - description: ingress from 0.0.0.0/0 over all TCP port
                   protocol: TCP
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
