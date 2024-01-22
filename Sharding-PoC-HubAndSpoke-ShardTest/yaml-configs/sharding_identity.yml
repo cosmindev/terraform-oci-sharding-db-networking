@@ -134,7 +134,7 @@ policies_configuration:
       compartment_id: GDAD-POC-KEY
       statements:
       - Allow group CertificateAuthorityAdmins to manage certificate-authority-family in compartment gdad_poc_certs_vaults_keys
-      - Allow group CertificateAuthorityAdmins to read keys in compartment gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins to manage keys in compartment gdad_poc_certs_vaults_keys
       - Allow group CertificateAuthorityAdmins to use key-delegate in compartment gdad_poc_certs_vaults_keys
       - Allow group CertificateAuthorityAdmins to read buckets in compartment gdad_poc
-      - Allow group CertificateAuthorityAdmins to read vaults in compartment gdad_poc_certs_vaults_keys
+      - Allow group CertificateAuthorityAdmins to manage vaults in compartment gdad_poc_certs_vaults_keys
