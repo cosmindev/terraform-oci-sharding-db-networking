@@ -89,7 +89,7 @@ dynamic_groups_configuration:
     GDAD-POC-CLUSTER-COMPARTMENT-RESOURCES-KEY: 
       name: gdad_poc_cluster_compartment_resources
       description: autonomous VM cluster compartment resources
-      matching_rule: ALL {resource.type='cloudautonomousvmcluster',resource.compartment.id='ocid1.compartment.oc1..aaaaaaaaxrtpfzkclfsrpyz46jofhi2i227julxnsiswq4t5liup2v7jjvia',resource.compartment.name='gdad_poc/gdad_poc_clusters'}
+      matching_rule: ALL {resource.type='cloudautonomousvmcluster',resource.compartment.name='gdad_poc/gdad_poc_clusters'}
     GDAD-POC-COMPARTMENT-COMPUTE-KEY: 
       name: gdad_poc_compartment_compute
       description: gdad compute resources
