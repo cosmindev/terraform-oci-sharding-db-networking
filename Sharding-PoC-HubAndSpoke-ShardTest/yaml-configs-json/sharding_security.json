@@ -1,0 +1,27 @@
+{
+  "vaults_configuration": {
+    "eu-frankfurt-1": {
+      "default_compartment_id": "GDAD-POC-CERT-VAULT-KEYS-KEY",
+      "keys": {
+        "GDAD-POC-CA-KEY-FRA-KEY": {
+          "algorithm": "RSA",
+          "length": 512,
+          "name": "gdad_poc_ca_key_fra",
+          "protection_mode": "HSM",
+          "vault_key": "GDAD-POC-VAULT-KEY"
+        },
+        "GDAD-POC-TDE-KEY-ORASPACE-KEY": {
+          "algorithm": "AES",
+          "name": "gdad_poc_TDE_key-oraspace",
+          "protection_mode": "SOFTWARE",
+          "vault_key": "GDAD-POC-VAULT-KEY"
+        }
+      },
+      "vaults": {
+        "GDAD-POC-VAULT-KEY": {
+          "name": "gdad_poc_vault"
+        }
+      }
+    }
+  }
+}
