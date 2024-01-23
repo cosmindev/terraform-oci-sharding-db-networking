@@ -87,12 +87,11 @@ network_configuration:
                 ingress_rules:
                 - description: ping from 0.0.0.0/0
                   protocol: ICMP
-                  icmp_type: 8
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
                   stateless: false
-                 - description: ingress from 0.0.0.0/0 over TCP22
-                   protocol: TCP
+                - description: ingress from 0.0.0.0/0 over all TCP
+                  protocol: TCP
                   src: 0.0.0.0/0
                   src_type: CIDR_BLOCK
                   stateless: false
@@ -104,13 +103,8 @@ network_configuration:
             is_oracle_gua_allocation_enabled: false
             route_tables:
               VCN-GDAD-IAD-RT-KEY:
-                display_name: vcn-gdad-iad-rt
+                display_name: gdad-iad-rt
                 route_rules:
-                  TO-IGW-IAD-KEY:
-                    description: Default route table to IGW
-                    destination: 0.0.0.0/0
-                    destination_type: CIDR_BLOCK
-                    network_entity_key: IGW-GDAD-IAD-KEY
                   TO-SGW-IAD-KEY:
                     description: SGW route table to SGW
                     destination: objectstorage
@@ -140,13 +134,9 @@ network_configuration:
                 security_list_keys:
                 - GDAD-SECLIST-IAD-KEY
             vcn_specific_gateways:
-              internet_gateways:
-                IGW-GDAD-IAD-KEY:
-                  display_name: igw-gdad-iad
-                  enabled: true
               service_gateways:
                 SGW-GDAD-IAD-KEY:
-                  display_name: sgw-gdad-iad
+                  display_name: gdad-iad-SGW
                   services: objectstorage
   eu-frankfurt-1:
     depends_on_regions:
@@ -207,7 +197,7 @@ network_configuration:
             is_oracle_gua_allocation_enabled: false
             route_tables:
               VCN-GDAD-FRA-RT-KEY:
-                display_name: vcn-gdad-fra-rt
+                display_name: gdad-fra-rt
                 route_rules:
                   TO-SGW-FRA-KEY:
                     description: SGW route table to SGW
@@ -263,7 +253,7 @@ network_configuration:
               internet_gateways:
               service_gateways:
                 SGW-GDAD-FRA-KEY:
-                  display_name: sgw-gdad-fra
+                  display_name: gdad-fra-SGW
                   services: all-services
   uk-london-1:
     depends_on_regions:
@@ -344,7 +334,7 @@ network_configuration:
             is_oracle_gua_allocation_enabled: false
             route_tables:
               VCN-GDAD-LHR-RT-KEY:
-                display_name: vcn-gdad-lhr-rt
+                display_name: gdad-lhr-rt
                 route_rules:
                   TO-SGW-LHR-KEY:
                     description: SGW route table to SGW
@@ -400,6 +390,6 @@ network_configuration:
               internet_gateways:
               service_gateways:
                 SGW-GDAD-LHR-KEY:
-                  display_name: sgw-gdad-lhr
+                  display_name: gdad-lhr-SGW
                   services: all-services
 # For each new region add here a new network configuration for that region
