@@ -123,7 +123,7 @@ network_configuration:
                   # For each new region add here a corresponding Route table route rule
             subnets:
               OSD-GSM-PROXY-SUBNET-IAD-KEY:
-                cidr_block: 10.1.0.0/24
+                cidr_block: 10.1.5.0/24
                 dhcp_options_key: default_dhcp_options
                 display_name: osd-gsm-iad-proxy-subnet
                 dns_label: osdgsmiadpr
