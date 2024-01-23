@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Thu Jan 04 2024                                                                          #
+# Last Modified: Tue Jan 23 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 ---
@@ -28,24 +28,24 @@ network_configuration:
                   drg_route_table_key: DRG-GDAD-RT-HUB-KEY
                   network_details:
                     attached_resource_key: GDADV10.0IAD-KEY
-                    type: VCN
-                DRG-GDAD-IAD-RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-ATTACH-KEY:
-                  display_name: drg-gdad-iad-rpc-vcn-gdad-iad-vcn-gdad-fra-attach
-                  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
-                  network_details:
-                    attached_resource_key: RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY
-                    type: REMOTE_PEERING_CONNECTION
-                DRG-GDAD-IAD-RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-ATTACH-KEY:
-                  display_name: drg-gdad-iad-rpc-vcn-gdad-iad-vcn-gdad-lhr-attach
-                  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
-                  network_details:
-                    attached_resource_key: RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-KEY
-                    type: REMOTE_PEERING_CONNECTION
-              remote_peering_connections:
-                RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY:
-                  display_name: rpc-vcn-gdad-iad-vcn-gdad-fra
-                RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-KEY:
-                  display_name: rpc-vcn-gdad-iad-vcn-gdad-lhr
+                    type: VCN  
+                #DRG-GDAD-IAD-RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-ATTACH-KEY:
+                # display_name: drg-gdad-iad-rpc-vcn-gdad-iad-vcn-gdad-fra-attach
+                #  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
+                #  network_details:
+                #    attached_resource_key: RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY
+                #    type: REMOTE_PEERING_CONNECTION
+                #DRG-GDAD-IAD-RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-ATTACH-KEY:
+                #  display_name: drg-gdad-iad-rpc-vcn-gdad-iad-vcn-gdad-lhr-attach
+                #  drg_route_table_key: DRG-GDAD-RT-HUB-KEY
+                #  network_details:
+                #    attached_resource_key: RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-KEY
+                #   type: REMOTE_PEERING_CONNECTION
+              #remote_peering_connections:
+              #  RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY:
+              #    display_name: rpc-vcn-gdad-iad-vcn-gdad-fra
+              #  RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-KEY:
+              #    display_name: rpc-vcn-gdad-iad-vcn-gdad-lhr
                 # For each new region add here a corresponding RPC
               drg_route_tables:
                 DRG-GDAD-RT-HUB-KEY:
@@ -64,12 +64,12 @@ network_configuration:
                         attachment_type: VCN
                         match_type: DRG_ATTACHMENT_TYPE
                       priority: 10
-                    ROUTE-TO-RPCS-KEY:
-                      action: ACCEPT
-                      match_criteria:
-                        attachment_type: REMOTE_PEERING_CONNECTION
-                        match_type: DRG_ATTACHMENT_TYPE
-                      priority: 20
+                    #ROUTE-TO-RPCS-KEY:
+                    #  action: ACCEPT
+                    #  match_criteria:
+                    #    attachment_type: REMOTE_PEERING_CONNECTION
+                    #    match_type: DRG_ATTACHMENT_TYPE
+                    #  priority: 20
         vcns:
           GDADV10.0IAD-KEY:
             block_nat_traffic: false
@@ -159,11 +159,11 @@ network_configuration:
                   network_details:
                     attached_resource_key: GDADV10.0FRA-KEY
                     type: VCN
-              remote_peering_connections:
-                RPC-VCN-GDAD-FRA-VCN-GDAD-IAD-KEY:
-                  display_name: rpc-vcn-gdad-fra-vcn-gdad-iad
-                  peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY
-                  peer_region_name: us-ashburn-1
+              #remote_peering_connections:
+              #  RPC-VCN-GDAD-FRA-VCN-GDAD-IAD-KEY:
+              #    display_name: rpc-vcn-gdad-fra-vcn-gdad-iad
+              #    peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-FRA-KEY
+              #    peer_region_name: us-ashburn-1
         vcns:
           GDADV10.0FRA-KEY:
             block_nat_traffic: false
@@ -276,11 +276,11 @@ network_configuration:
                   network_details:
                     attached_resource_key: GDADV10.0LHR-KEY
                     type: VCN
-              remote_peering_connections:
-                RPC-VCN-GDAD-LHR-VCN-GDAD-IAD-KEY:
-                  display_name: rpc-vcn-gdad-lhr-vcn-gdad-iad
-                  peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-KEY
-                  peer_region_name: us-ashburn-1
+              #remote_peering_connections:
+              #  RPC-VCN-GDAD-LHR-VCN-GDAD-IAD-KEY:
+              #    display_name: rpc-vcn-gdad-lhr-vcn-gdad-iad
+              #    peer_key: RPC-VCN-GDAD-IAD-VCN-GDAD-LHR-KEY
+              #    peer_region_name: us-ashburn-1
         vcns:
           GDADV10.0LHR-KEY:
             block_nat_traffic: false
