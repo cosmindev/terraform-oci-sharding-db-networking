@@ -3,7 +3,7 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at https: //oss.oracle.com/licenses/upl. #
 # Author: Cosmin Tudor                                                                                    #
 # Author email: cosmin.tudor@oracle.com                                                                   #
-# Last Modified: Tue Jan 23 2024                                                                          #
+# Last Modified: Wed Jan 24 2024                                                                          #
 # Modified by: Cosmin Tudor, email: cosmin.tudor@oracle.com                                               #
 # ####################################################################################################### #
 ---
@@ -123,6 +123,7 @@ network_configuration:
                   # For each new region add here a corresponding Route table route rule
             subnets:
               OSD-GSM-PROXY-SUBNET-IAD-KEY:
+                compartment_id: GDAD-POC-DATABASES-KEY
                 cidr_block: 10.1.0.0/24
                 dhcp_options_key: default_dhcp_options
                 display_name: osd-gsm-proxy-subnet
