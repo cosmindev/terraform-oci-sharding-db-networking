@@ -9,7 +9,7 @@
 
 ---
 compartments_configuration:
-  enable_delete: 'false'
+  enable_delete: 'true'
   default_parent_id: PARENT-COMPARTMENT-FROM-ORM-KEY
   compartments:
     GDAD-POC-KEY:
